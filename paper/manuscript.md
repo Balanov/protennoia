@@ -6,7 +6,7 @@ Anton N. Balanov
 ORCID 0000-0003-1891-1147 · Peoples' Friendship University of Russia (RUDN), Moscow, Russian Federation
 Corresponding author: office@balanov.pro
 
-**Repository:** `github.com/Balanov/protennoia` · **Protocol spec (versioned, citable):** DOI to be minted via DataCite/Zenodo · **Implementation:** `protennoia` package (numpy, stdlib-only, deterministic; v0.1.3)
+**Repository:** `github.com/Balanov/protennoia` · **Protocol spec (versioned, citable):** 10.5281/zenodo.24327764 · **Implementation:** `protennoia` package (numpy, stdlib-only, deterministic; v0.1.3)
 
 ---
 
