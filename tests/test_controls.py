@@ -47,15 +47,46 @@ class TestControlGate(unittest.TestCase):
 
     def test_gate_failure_blocks_profile_issuance(self):
         """A broken control must block the protocol, not merely be reported."""
-        good = P.run_matrix(systems=["random_policy", "lookup_table"], seeds=(0,), reps=1)
-        self.assertIn("gate_passed", good)
-
-        # force a failure by tightening a binding to an impossible threshold
         original = P.CONTROL_BINDINGS[0]["check"]
         try:
             P.CONTROL_BINDINGS[0]["check"] = lambda v: False
-            broken = P.run_matrix(systems=["random_policy", "lookup_table"], seeds=(0,), reps=1)
+            broken = P.run_matrix(systems=["random_policy", "lookup_table",
+                                           "compositional_model"], seeds=(0,), reps=1)
             self.assertFalse(broken["gate_passed"])
+            # the subject profile must be withheld, not merely flagged
+            self.assertIn("compositional_model", broken["withheld_systems"])
+            self.assertNotIn("compositional_model", broken["systems"])
+            # control diagnostics are retained so the defect can be diagnosed
+            self.assertIn("random_policy", broken["systems"])
+        finally:
+            P.CONTROL_BINDINGS[0]["check"] = original
+
+    def test_gate_passing_issues_profiles(self):
+        ok = P.run_matrix(systems=["random_policy", "compositional_model"],
+                           seeds=(0,), reps=1)
+        self.assertTrue(ok["gate_passed"])
+        self.assertEqual(ok["withheld_systems"], [])
+        self.assertIn("compositional_model", ok["systems"])
+
+    def test_run_command_refuses_to_issue_a_subject_profile(self):
+        import io as _io
+        import os as _os
+        import tempfile as _tf
+        from contextlib import redirect_stderr
+        original = P.CONTROL_BINDINGS[0]["check"]
+        try:
+            P.CONTROL_BINDINGS[0]["check"] = lambda v: False
+            with _tf.TemporaryDirectory() as tmp:
+                out = _os.path.join(tmp, "p.json")
+                err = _io.StringIO()
+                with redirect_stderr(err):
+                    rc = P.main(["run", "--system", "compositional_model",
+                                 "--seed", "0", "--out", out])
+                self.assertEqual(rc, 2)
+                with open(out, encoding="utf-8") as fh:
+                    data = __import__("json").load(fh)
+                self.assertFalse(data["profile_issued"])
+                self.assertNotIn("metrics", data)
         finally:
             P.CONTROL_BINDINGS[0]["check"] = original
 

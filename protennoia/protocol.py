@@ -17,7 +17,17 @@ from . import metrics as M
 from .systems import (N_LABELS, build_system, make_instances, system_names)
 
 PROTOCOL_VERSION = "0.1"
-IMPLEMENTATION_VERSION = "0.1.0"
+IMPLEMENTATION_VERSION = "0.1.1"
+
+# Systems designated as controls. The gate is evaluated over these alone.
+CONTROL_SYSTEMS = [
+    "thermostat_pid",
+    "random_policy",
+    "overconfident_policy",
+    "lookup_table",
+    "mock_calibrated_confidence",
+    "fixed_response",
+]
 
 EVAL_SUBSET = 168          # items used for ablation accuracy
 CCE_SUBSET = 240           # items used for the representation probe
@@ -393,6 +403,18 @@ def _pool_metric(key: str, vals: list[dict]) -> dict:
 
 
 # ------------------------------------------------------------------ CLI ----
+def run_gate(seeds=(0,), reps: int = 1) -> dict:
+    """Evaluate the control bindings. This is the gate itself."""
+    controls = {}
+    for name in CONTROL_SYSTEMS:
+        runs = []
+        for rep in range(reps):
+            for s in seeds:
+                runs.append(evaluate_system(name, seed=s + 1000 * rep))
+        controls[name] = pool(runs)
+    return check_controls(controls)
+
+
 def run_matrix(systems=None, seeds=(0, 1, 2, 3, 4), reps: int = 3) -> dict:
     systems = systems or system_names()
     raw: dict[str, list[dict]] = {}
@@ -403,7 +425,28 @@ def run_matrix(systems=None, seeds=(0, 1, 2, 3, 4), reps: int = 3) -> dict:
                 runs.append(evaluate_system(name, seed=s + 1000 * rep))
         raw[name] = runs
     pooled = {k: pool(v) for k, v in raw.items()}
-    controls = check_controls(pooled)
+    # The gate is always evaluated over the full control set, even when the
+    # caller restricts the subject systems: a gate over a partial control set
+    # would fail for the wrong reason.
+    gate_profiles = {k: v for k, v in pooled.items() if k in CONTROL_SYSTEMS}
+    for name in CONTROL_SYSTEMS:
+        if name not in gate_profiles:
+            runs = []
+            for rep in range(reps):
+                for s in seeds:
+                    runs.append(evaluate_system(name, seed=s + 1000 * rep))
+            gate_profiles[name] = pool(runs)
+    controls = check_controls(gate_profiles)
+
+    # Fail-closed semantics: when the gate fails, no profile is issued for any
+    # subject system. The control diagnostics are retained so that the defect
+    # can be diagnosed, but the subject profiles are withheld.
+    withheld = []
+    if not controls["gate_passed"]:
+        withheld = [k for k in pooled if k not in CONTROL_SYSTEMS]
+        for k in withheld:
+            pooled.pop(k)
+
     # relative EIB against the geometric mean across systems
     eibs = [p["metrics"]["eib"]["eib"]["median"] for p in pooled.values()
             if p["metrics"]["eib"].get("eib")]
@@ -420,6 +463,7 @@ def run_matrix(systems=None, seeds=(0, 1, 2, 3, 4), reps: int = 3) -> dict:
         "systems": pooled,
         "controls": controls,
         "gate_passed": controls["gate_passed"],
+        "withheld_systems": withheld,
         "eib_reference": ref,
     }
 
@@ -444,7 +488,31 @@ def main(argv=None) -> int:
     a = ap.parse_args(argv)
 
     if a.cmd == "run":
+        # Fail-closed: a subject profile is issued only if the control gate
+        # passes. A control system may always be evaluated, since that is how
+        # the gate is diagnosed.
+        is_control = a.system in CONTROL_SYSTEMS
+        gate = None
+        if not is_control:
+            gate = run_gate(seeds=(0, 1), reps=1)
+            if not gate["gate_passed"]:
+                print("CONTROL GATE FAILED -- no profile issued for "
+                      f"{a.system}. Diagnostics:", file=sys.stderr)
+                for row in gate["rows"]:
+                    print(f"  {row['metric']}: {row['expectation']} "
+                          f"observed={row['observed']} -> "
+                          f"{'PASS' if row['passed'] else 'FAIL'}", file=sys.stderr)
+                if a.out:
+                    with open(a.out, "w", encoding="utf-8") as fh:
+                        json.dump({"system": a.system, "profile_issued": False,
+                                   "reason": "control gate failed",
+                                   "controls": gate}, fh, indent=2,
+                                  ensure_ascii=False, default=float)
+                return 2
         prof = evaluate_system(a.system, seed=a.seed)
+        prof["profile_issued"] = True
+        if gate is not None:
+            prof["gate_passed"] = gate["gate_passed"]
         text = json.dumps(prof, indent=2, ensure_ascii=False, default=float)
         if a.out:
             with open(a.out, "w", encoding="utf-8") as fh:

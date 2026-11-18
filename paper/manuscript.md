@@ -20,7 +20,7 @@ Research on artificial intelligence and consciousness has produced indicator fra
 - Seven metrics, each bound to a negative control at which it must fall.
 - Fail-closed gate: no profile is issued if any control misbehaves.
 - Vector output, never a scalar score and never a certificate.
-- Deterministic numpy-only implementation with a 44-test suite.
+- Deterministic numpy-only implementation with a 46-test suite.
 
 **Keywords:** AI consciousness; measurement protocol; negative controls; metacognition; compositional generalisation; perturbational complexity; reproducibility
 
@@ -242,7 +242,7 @@ No accelerator, no network access, no model weights, no API keys. Learned compon
 closed-form — ridge regression on fixed features — so that every number in this paper is
 reproducible from source without a training budget. The package comprises `metrics.py` (the
 seven metrics), `systems.py` (ten reference systems and the task suite), `protocol.py` (the
-orchestrator, the control registry and the CLI), and a test suite of 44 tests. Every profile
+orchestrator, the control registry and the CLI), and a test suite of 46 tests. Every profile
 records the protocol version, the implementation version, the seed, per-metric uncertainty, and
 the outcome of every control in the same run.
 
@@ -267,7 +267,7 @@ quasi-recurrent agent that carries state across the episode and can learn from a
 **Statistics.** Five seeds per configuration, three repetitions (15 runs per system), median with
 bootstrap 95% confidence intervals over ≥1000 resamples, and paired comparison across seeds.
 
-The complete test suite passes (44 tests, 0 failures), and the control gate passes on the full
+The complete test suite passes (46 tests, 0 failures), and the control gate passes on the full
 15-run configuration.
 
 ---
@@ -299,7 +299,7 @@ shared-information efficiency is 0.02.
 Table 2 gives the pooled profile vector for each system. No column is a summary of the others;
 the vectors are not comparable by magnitude across metrics, only within a metric across systems.
 
-| System | MA | ECE | AOG | CGS | CCE | PCT | R<sub>str</sub> | Δ<sub>c,str</sub> | R<sub>rnd</sub> | Δ<sub>c,rnd</sub> |
+| System | MA | ECE | AOG | CGS | CCE | PCT | R<sub>str</sub> | Δ<sub>c,str</sub> | R<sub>rnd</sub> | Δ<sub>c,rnd</sub> | EIB (rel.) |
 |---|---|---|---|---|---|---|---|---|---|---|
 | thermostat PID | 0.500 | 0.778 | 0.000 | 0.400 | — | 0.000 | — | — | — | — |
 | random policy | 0.500 | 0.004 | −0.018 | — | 0.017 | 0.000 | — | — | — | — |
