@@ -41,7 +41,7 @@ The present paper proposes a response. We take the indicator frameworks as given
 
 Three commitments define the protocol, and we regard them as its substantive contribution rather than as implementation details.
 
-**Fail-closed evaluation.** Each metric is bound to a control at which it must fall: metacognitive accuracy at chance on a random policy; compositional generalisation at floor on a lookup table; shared-information efficiency at zero for independent latent codes; error-signal adaptation at zero in the absence of corrective feedback; perturbational complexity at floor for a system with fixed, non-differentiated response. If a metric does not fall on its control, the protocol returns no profile for the system. This is implemented as a test in the reference suite, so the property is enforced by construction rather than promised in a discussion section. The rationale is that a measurement instrument which cannot fail is not a measurement instrument.
+**Fail-closed evaluation.** Each metric is bound to a control at which it must fall: metacognitive accuracy at chance on a random policy; compositional generalisation at floor on a lookup table; shared-information efficiency at zero for independent latent codes; error-signal adaptation at zero in the absence of corrective feedback; perturbational complexity at floor for a system with fixed, non-differentiated response. If a metric does not fall on its control, the protocol returns no profile for the system. This is implemented as a test in the reference suite, so the property is enforced by construction rather than promised in a discussion section. When the gate fails, the protocol withholds every subject profile and retains only the control diagnostics needed to diagnose the defect; a test asserts the suppression. The rationale is that a measurement instrument which cannot fail is not a measurement instrument.
 
 **Vector, not score.** We do not reduce the metric vector to a single index. This departs from practice elsewhere, including in the Bayesian frameworks from which we draw, and the departure is deliberate. A scalar summary creates a gradient: once a scalar exists, systems (or their developers) have an incentive to optimise it, and the scalar's meaning drifts toward whatever it was optimised for. The framework of Chandaria et al. is *explicit* about the same hazard, noting that treating indicators as evidence with likelihood ratios rather than as necessary and sufficient conditions is what allows the framework to absorb rival theories; but even a credence is a scalar, and a credence for consciousness can be optimised directly. A published profile — a vector with per-metric uncertainty and a declared protocol version — supports comparison without supplying a target.
 
@@ -300,17 +300,17 @@ Table 2 gives the pooled profile vector for each system. No column is a summary 
 the vectors are not comparable by magnitude across metrics, only within a metric across systems.
 
 | System | MA | ECE | AOG | CGS | CCE | PCT | R<sub>str</sub> | Δ<sub>c,str</sub> | R<sub>rnd</sub> | Δ<sub>c,rnd</sub> | EIB (rel.) |
-|---|---|---|---|---|---|---|---|---|---|---|
-| thermostat PID | 0.500 | 0.778 | 0.000 | 0.400 | — | 0.000 | — | — | — | — |
-| random policy | 0.500 | 0.004 | −0.018 | — | 0.017 | 0.000 | — | — | — | — |
-| overconfident policy | 0.500 | 0.494 | 0.000 | 0.990 | 0.017 | 0.000 | — | — | — | — |
-| lookup table | 0.500 | 0.212 | 0.000 | 0.128 | 0.017 | 0.000 | — | — | — | — |
-| n-gram model | 0.841 | 0.126 | 0.000 | 0.588 | 0.017 | 0.000 | — | — | — | — |
-| additive model | 0.665 | 0.791 | 0.000 | 1.065 | 0.540 | 0.092 | 0.150 | 0.600 | 0.300 | 0.700 |
-| mock calibrated confidence | **0.983** | 0.036 | 0.000 | 1.008 | 0.017 | 0.000 | — | — | — | — |
-| fixed response | 0.500 | 0.786 | 0.000 | — | — | 0.000 | — | — | — | — |
-| compositional model | 0.731 | 0.795 | 0.000 | 1.059 | **0.904** | 0.093 | 0.150 | 0.600 | 0.250 | 0.700 |
-| recurrent agent | 0.630 | 0.579 | **0.060** | 0.978 | 0.716 | 0.093 | 0.100 | — | 0.300 | — |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| thermostat PID | 0.500 | 0.778 | 0.000 | 0.400 | — | 0.000 | — | — | — | — | 1.123 |
+| random policy | 0.500 | 0.004 | −0.018 | — | 0.017 | 0.000 | — | — | — | — | — |
+| overconfident policy | 0.500 | 0.494 | 0.000 | 0.990 | 0.017 | 0.000 | — | — | — | — | — |
+| lookup table | 0.500 | 0.212 | 0.000 | 0.128 | 0.017 | 0.000 | — | — | — | — | — |
+| n-gram model | 0.841 | 0.126 | 0.000 | 0.588 | 0.017 | 0.000 | — | — | — | — | — |
+| additive model | 0.665 | 0.791 | 0.000 | 1.065 | 0.540 | 0.092 | 0.150 | 0.600 | 0.300 | 0.700 | 0.810 |
+| mock calibrated confidence | **0.983** | 0.036 | 0.000 | 1.008 | 0.017 | 0.000 | — | — | — | — | — |
+| fixed response | 0.500 | 0.786 | 0.000 | — | — | 0.000 | — | — | — | — | — |
+| compositional model | 0.731 | 0.795 | 0.000 | 1.059 | **0.904** | 0.093 | 0.150 | 0.600 | 0.250 | 0.700 | 0.810 |
+| recurrent agent | 0.630 | 0.579 | **0.060** | 0.978 | 0.716 | 0.093 | 0.100 | — | 0.300 | — | 1.355 |
 
 **Table 2.** Pooled profile vectors (median over 15 runs per system). "—" denotes *not
 applicable*: the metric is undefined for that system and no value is imputed.
