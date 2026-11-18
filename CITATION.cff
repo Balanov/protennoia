@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "If you use this protocol, please cite the versioned protocol identifier (DOI), not this repository HEAD."
+title: "Protennoia Protocol v0.1: an operational measurement protocol for AI cognitive candidacy"
+abstract: >-
+  Seven operational metrics with mandatory negative controls, a fail-closed evaluation
+  gate, and a reproducible reference implementation. Issues a profile, never a certificate.
+type: software
+version: 0.1.0
+date-released: "2026-11-18"
+license: MIT
+repository-code: "https://github.com/Balanov/protennoia"
+url: "https://github.com/Balanov/protennoia"
+doi: "10.5281/zenodo.XXXXXXX"
+authors:
+  - family-names: Balanov
+    given-names: Anton N.
+    orcid: "https://orcid.org/0000-0003-1891-1147"
+    affiliation: "Peoples' Friendship University of Russia (RUDN)"
+keywords:
+  - AI consciousness
+  - measurement protocol
+  - negative controls
+  - metacognition
+  - compositional generalisation
+  - perturbational complexity
+  - reproducibility

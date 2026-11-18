@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="170.0" height="118.0" viewBox="0 0 170.0 118.0" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif">
+<title>Protennoia Protocol: criteria, metrics, and control bindings</title>
+<text x="6.00" y="10.00" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif" font-size="9.5" fill="#16181d" text-anchor="start" font-weight="bold">Figure 1. Structure of the Protennoia Protocol v0.1.</text>
+<text x="6.00" y="16.50" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif" font-size="8" fill="#5b6472" text-anchor="start" font-weight="normal">Criteria are borrowed from existing indicator frameworks; the contribution is the executable layer below them.</text>
+<text x="6.00" y="26.00" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif" font-size="7.5" fill="#5b6472" text-anchor="start" font-weight="bold">CRITERIA</text>
+<text x="58.00" y="26.00" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif" font-size="7.5" fill="#5b6472" text-anchor="start" font-weight="bold">OPERATIONAL METRICS</text>
+<text x="126.00" y="26.00" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif" font-size="7.5" fill="#5b6472" text-anchor="start" font-weight="bold">INDICATOR MAPPING</text>
+<rect x="6.00" y="30.00" width="36.00" height="18.00" rx="3" fill="#e7f0f7" stroke="#1f5f8b" stroke-width="1.0" opacity="1.0"/>
+<text x="10.00" y="38.00" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif" font-size="10" fill="#1f5f8b" text-anchor="start" font-weight="bold">Π₁</text>
+<text x="22.00" y="38.00" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif" font-size="8.4" fill="#16181d" text-anchor="start" font-weight="normal">Recursive closure</text>
+<text x="22.00" y="44.00" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif" font-size="6.6" fill="#5b6472" text-anchor="start" font-weight="normal" font-style="italic">borrowed, not claimed new</text>
+<rect x="6.00" y="54.00" width="36.00" height="18.00" rx="3" fill="#e7f0f7" stroke="#1f5f8b" stroke-width="1.0" opacity="1.0"/>
+<text x="10.00" y="62.00" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif" font-size="10" fill="#1f5f8b" text-anchor="start" font-weight="bold">Π₂</text>
+<text x="22.00" y="62.00" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif" font-size="8.4" fill="#16181d" text-anchor="start" font-weight="normal">Hierarchical predictive coding</text>
+<text x="22.00" y="68.00" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif" font-size="6.6" fill="#5b6472" text-anchor="start" font-weight="normal" font-style="italic">borrowed, not claimed new</text>
+<rect x="6.00" y="78.00" width="36.00" height="18.00" rx="3" fill="#e7f0f7" stroke="#1f5f8b" stroke-width="1.0" opacity="1.0"/>
+<text x="10.00" y="86.00" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif" font-size="10" fill="#1f5f8b" text-anchor="start" font-weight="bold">Π₃</text>
+<text x="22.00" y="86.00" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif" font-size="8.4" fill="#16181d" text-anchor="start" font-weight="normal">Causal integration</text>
+<text x="22.00" y="92.00" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif" font-size="6.6" fill="#5b6472" text-anchor="start" font-weight="normal" font-style="italic">borrowed, not claimed new</text>
+<rect x="58.00" y="30.00" width="62.00" height="12.40" rx="2" fill="#ffffff" stroke="#c9ced6" stroke-width="1.0" opacity="1.0"/>
+<text x="61.50" y="35.60" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif" font-size="7.8" fill="#1f5f8b" text-anchor="start" font-weight="bold">MA + ECE</text>
+<text x="61.50" y="40.40" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif" font-size="6.9" fill="#16181d" text-anchor="start" font-weight="normal">metacognitive accuracy with calibration</text>
+<text x="126.00" y="37.60" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif" font-size="7.4" fill="#5b6472" text-anchor="start" font-weight="normal">HOT-2, AST-1</text>
+<rect x="58.00" y="44.00" width="62.00" height="12.40" rx="2" fill="#f2f4f7" stroke="#c9ced6" stroke-width="1.0" opacity="1.0"/>
+<text x="61.50" y="49.60" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif" font-size="7.8" fill="#1f5f8b" text-anchor="start" font-weight="bold">AOG</text>
+<text x="61.50" y="54.40" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif" font-size="6.9" fill="#16181d" text-anchor="start" font-weight="normal">adaptation-on-error gain</text>
+<text x="126.00" y="51.60" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif" font-size="7.4" fill="#5b6472" text-anchor="start" font-weight="normal">HOT-2, RPT-1</text>
+<rect x="58.00" y="58.00" width="62.00" height="12.40" rx="2" fill="#ffffff" stroke="#c9ced6" stroke-width="1.0" opacity="1.0"/>
+<text x="61.50" y="63.60" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif" font-size="7.8" fill="#1f5f8b" text-anchor="start" font-weight="bold">CGS + SG-gap</text>
+<text x="61.50" y="68.40" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif" font-size="6.9" fill="#16181d" text-anchor="start" font-weight="normal">compositional generalisation, perplexity-controlled</text>
+<text x="126.00" y="65.60" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif" font-size="7.4" fill="#5b6472" text-anchor="start" font-weight="normal">PP-1, PP-2</text>
+<rect x="58.00" y="72.00" width="62.00" height="12.40" rx="2" fill="#f2f4f7" stroke="#c9ced6" stroke-width="1.0" opacity="1.0"/>
+<text x="61.50" y="77.60" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif" font-size="7.8" fill="#1f5f8b" text-anchor="start" font-weight="bold">CCE</text>
+<text x="61.50" y="82.40" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif" font-size="6.9" fill="#16181d" text-anchor="start" font-weight="normal">cross-modal shared information</text>
+<text x="126.00" y="79.60" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif" font-size="7.4" fill="#5b6472" text-anchor="start" font-weight="normal">GWT-1, GWT-3</text>
+<rect x="58.00" y="86.00" width="62.00" height="12.40" rx="2" fill="#ffffff" stroke="#c9ced6" stroke-width="1.0" opacity="1.0"/>
+<text x="61.50" y="91.60" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif" font-size="7.8" fill="#1f5f8b" text-anchor="start" font-weight="bold">R, Δ_c, κ</text>
+<text x="61.50" y="96.40" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif" font-size="6.9" fill="#16181d" text-anchor="start" font-weight="normal">redundancy, collapse threshold, sharpness</text>
+<text x="126.00" y="93.60" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif" font-size="7.4" fill="#5b6472" text-anchor="start" font-weight="normal">IIT (qualitative)</text>
+<rect x="58.00" y="100.00" width="62.00" height="12.40" rx="2" fill="#f2f4f7" stroke="#c9ced6" stroke-width="1.0" opacity="1.0"/>
+<text x="61.50" y="105.60" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif" font-size="7.8" fill="#1f5f8b" text-anchor="start" font-weight="bold">PCT</text>
+<text x="61.50" y="110.40" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif" font-size="6.9" fill="#16181d" text-anchor="start" font-weight="normal">perturbational complexity proxy</text>
+<text x="126.00" y="107.60" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif" font-size="7.4" fill="#5b6472" text-anchor="start" font-weight="normal">RPT-1, RPT-2</text>
+<rect x="58.00" y="114.00" width="62.00" height="12.40" rx="2" fill="#ffffff" stroke="#c9ced6" stroke-width="1.0" opacity="1.0"/>
+<text x="61.50" y="119.60" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif" font-size="7.8" fill="#1f5f8b" text-anchor="start" font-weight="bold">EIB</text>
+<text x="61.50" y="124.40" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif" font-size="6.9" fill="#16181d" text-anchor="start" font-weight="normal">energy per integrated bit (relative)</text>
+<text x="126.00" y="121.60" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif" font-size="7.4" fill="#5b6472" text-anchor="start" font-weight="normal">AE-1, AE-2</text>
+<line x1="42.00" y1="36.00" x2="58.00" y2="36.00" stroke="#dfe3e9" stroke-width="0.7" stroke-linecap="round"/>
+<line x1="42.00" y1="50.00" x2="58.00" y2="50.00" stroke="#dfe3e9" stroke-width="0.7" stroke-linecap="round"/>
+<line x1="42.00" y1="64.00" x2="58.00" y2="64.00" stroke="#dfe3e9" stroke-width="0.7" stroke-linecap="round"/>
+<line x1="42.00" y1="78.00" x2="58.00" y2="78.00" stroke="#dfe3e9" stroke-width="0.7" stroke-linecap="round"/>
+<line x1="42.00" y1="92.00" x2="58.00" y2="92.00" stroke="#dfe3e9" stroke-width="0.7" stroke-linecap="round"/>
+<line x1="42.00" y1="106.00" x2="58.00" y2="106.00" stroke="#dfe3e9" stroke-width="0.7" stroke-linecap="round"/>
+<line x1="42.00" y1="120.00" x2="58.00" y2="120.00" stroke="#dfe3e9" stroke-width="0.7" stroke-linecap="round"/>
+<line x1="42.00" y1="66.00" x2="58.00" y2="66.00" stroke="#1f5f8b" stroke-width="1.2" stroke-linecap="round"/>
+<rect x="6.00" y="100.00" width="158.00" height="13.00" rx="2" fill="#fdf0e6" stroke="#a4591b" stroke-width="1.0" opacity="1.0"/>
+<text x="10.00" y="108.60" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif" font-size="7.2" fill="#16181d" text-anchor="start" font-weight="normal">Fail-closed  ·  every metric bound to a control at which it must fall  |  Vector, not score  ·  no scalar summary  |  No certification  ·  a profile, never a permit</text>
+</svg>

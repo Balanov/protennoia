@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="170.0" height="100.0" viewBox="0 0 170.0 100.0" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif">
+<title>Measured profile vectors across reference systems</title>
+<text x="6.00" y="10.00" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif" font-size="9.5" fill="#16181d" text-anchor="start" font-weight="bold">Figure 4. Measured profile vectors (no scalar summary).</text>
+<text x="6.00" y="16.50" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif" font-size="8" fill="#5b6472" text-anchor="start" font-weight="normal">Cell value is normalised per metric across systems; arrows mark the direction of 'more of the property'. Hatched cells are not applicable.</text>
+<text x="6.00" y="40.00" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif" font-size="9" fill="#5b6472" text-anchor="start" font-weight="normal" font-style="italic">[pending: harness output not yet available]</text>
+</svg>

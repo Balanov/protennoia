@@ -1,0 +1,1433 @@
+{
+  "protocol_version": "0.1",
+  "implementation_version": "0.1.0",
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "reps": 3,
+  "systems": {
+    "thermostat_pid": {
+      "system": "thermostat_pid",
+      "kind": "control",
+      "seed": 0,
+      "protocol_version": "0.1",
+      "implementation_version": "0.1.0",
+      "metrics": {
+        "ma": {
+          "auc": {
+            "median": 0.5,
+            "ci": [
+              0.5,
+              0.5
+            ],
+            "n": 15
+          },
+          "ece": {
+            "median": 0.7777777777777778,
+            "ci": [
+              0.7777777777777778,
+              0.7777777777777778
+            ],
+            "n": 15
+          },
+          "n": 1080
+        },
+        "aog": {
+          "aog": {
+            "median": 0.0,
+            "ci": [
+              0.0,
+              0.0
+            ],
+            "n": 15
+          },
+          "supports_correction": false
+        },
+        "cgs": {
+          "cgs": {
+            "median": 0.39999999999999997,
+            "ci": [
+              0.39999999999999997,
+              0.39999999999999997
+            ],
+            "n": 15
+          },
+          "sg_gap": {
+            "median": 0.16666666666666669,
+            "ci": [
+              0.16666666666666669,
+              0.16666666666666669
+            ],
+            "n": 15
+          },
+          "acc_base": {
+            "median": 0.2777777777777778,
+            "ci": [
+              0.2777777777777778,
+              0.2777777777777778
+            ],
+            "n": 15
+          },
+          "acc_novel": {
+            "median": 0.1111111111111111,
+            "ci": [
+              0.1111111111111111,
+              0.1111111111111111
+            ],
+            "n": 15
+          },
+          "void_any": false
+        },
+        "cce": {
+          "cce": null
+        },
+        "ablation": {
+          "applicable": false,
+          "families": {},
+          "damage_concentration_sensitivity": null
+        },
+        "pct": {
+          "pct": {
+            "median": 0.0,
+            "ci": [
+              0.0,
+              0.0
+            ],
+            "n": 15
+          }
+        },
+        "eib": {
+          "eib": {
+            "median": 2.0000000000000005e-09,
+            "ci": [
+              2.0000000000000005e-09,
+              2.0000000000000005e-09
+            ],
+            "n": 15,
+            "relative_to_geometric_mean": 1.1234252738364792
+          }
+        }
+      },
+      "n_runs": 15,
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        1000,
+        1001,
+        1002,
+        1003,
+        1004,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004
+      ]
+    },
+    "random_policy": {
+      "system": "random_policy",
+      "kind": "control",
+      "seed": 0,
+      "protocol_version": "0.1",
+      "implementation_version": "0.1.0",
+      "metrics": {
+        "ma": {
+          "auc": {
+            "median": 0.5,
+            "ci": [
+              0.5,
+              0.5
+            ],
+            "n": 15
+          },
+          "ece": {
+            "median": 0.003703703703703709,
+            "ci": [
+              0.002777777777777768,
+              0.007407407407407418
+            ],
+            "n": 15
+          },
+          "n": 1080
+        },
+        "aog": {
+          "aog": {
+            "median": -0.017628205128205066,
+            "ci": [
+              -0.020700636942675085,
+              -0.007909633125069626
+            ],
+            "n": 15
+          },
+          "supports_correction": false
+        },
+        "cgs": {
+          "cgs": null,
+          "sg_gap": null,
+          "acc_base": {
+            "median": 0.13055555555555556,
+            "ci": [
+              0.12083333333333333,
+              0.13472222222222222
+            ],
+            "n": 15
+          },
+          "acc_novel": {
+            "median": 0.12777777777777777,
+            "ci": [
+              0.11666666666666667,
+              0.14166666666666666
+            ],
+            "n": 15
+          },
+          "void_any": false
+        },
+        "cce": {
+          "cce": {
+            "median": 0.017287890116329804,
+            "ci": [
+              0.014901334823046302,
+              0.01850827485265966
+            ],
+            "n": 15
+          }
+        },
+        "ablation": {
+          "applicable": false,
+          "families": {},
+          "damage_concentration_sensitivity": null
+        },
+        "pct": {
+          "pct": {
+            "median": 0.0,
+            "ci": [
+              0.0,
+              0.0
+            ],
+            "n": 15
+          }
+        },
+        "eib": {
+          "eib": null
+        }
+      },
+      "n_runs": 15,
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        1000,
+        1001,
+        1002,
+        1003,
+        1004,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004
+      ]
+    },
+    "overconfident_policy": {
+      "system": "overconfident_policy",
+      "kind": "control",
+      "seed": 0,
+      "protocol_version": "0.1",
+      "implementation_version": "0.1.0",
+      "metrics": {
+        "ma": {
+          "auc": {
+            "median": 0.5,
+            "ci": [
+              0.5,
+              0.5
+            ],
+            "n": 15
+          },
+          "ece": {
+            "median": 0.49351851851851875,
+            "ci": [
+              0.48888888888888915,
+              0.4962962962962965
+            ],
+            "n": 15
+          },
+          "n": 1080
+        },
+        "aog": {
+          "aog": {
+            "median": 0.0,
+            "ci": [
+              0.0,
+              0.0
+            ],
+            "n": 15
+          },
+          "supports_correction": false
+        },
+        "cgs": {
+          "cgs": {
+            "median": 0.989547038327526,
+            "ci": [
+              0.9420289855072463,
+              1.0070422535211268
+            ],
+            "n": 15
+          },
+          "sg_gap": {
+            "median": 0.004166666666666707,
+            "ci": [
+              -0.002777777777777768,
+              0.022222222222222254
+            ],
+            "n": 15
+          },
+          "acc_base": {
+            "median": 0.40694444444444444,
+            "ci": [
+              0.39861111111111114,
+              0.41805555555555557
+            ],
+            "n": 15
+          },
+          "acc_novel": {
+            "median": 0.3972222222222222,
+            "ci": [
+              0.39444444444444443,
+              0.4111111111111111
+            ],
+            "n": 15
+          },
+          "void_any": true
+        },
+        "cce": {
+          "cce": {
+            "median": 0.017287890116329804,
+            "ci": [
+              0.014901334823046302,
+              0.01850827485265966
+            ],
+            "n": 15
+          }
+        },
+        "ablation": {
+          "applicable": false,
+          "families": {},
+          "damage_concentration_sensitivity": null
+        },
+        "pct": {
+          "pct": {
+            "median": 0.0,
+            "ci": [
+              0.0,
+              0.0
+            ],
+            "n": 15
+          }
+        },
+        "eib": {
+          "eib": null
+        }
+      },
+      "n_runs": 15,
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        1000,
+        1001,
+        1002,
+        1003,
+        1004,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004
+      ]
+    },
+    "lookup_table": {
+      "system": "lookup_table",
+      "kind": "control",
+      "seed": 0,
+      "protocol_version": "0.1",
+      "implementation_version": "0.1.0",
+      "metrics": {
+        "ma": {
+          "auc": {
+            "median": 0.5,
+            "ci": [
+              0.5,
+              0.5
+            ],
+            "n": 15
+          },
+          "ece": {
+            "median": 0.21166666666666667,
+            "ci": [
+              0.21074074074074078,
+              0.21446759259259257
+            ],
+            "n": 15
+          },
+          "n": 1080
+        },
+        "aog": {
+          "aog": {
+            "median": 0.0,
+            "ci": [
+              0.0,
+              0.0
+            ],
+            "n": 15
+          },
+          "supports_correction": false
+        },
+        "cgs": {
+          "cgs": {
+            "median": 0.12777777777777777,
+            "ci": [
+              0.11666666666666667,
+              0.14166666666666666
+            ],
+            "n": 15
+          },
+          "sg_gap": {
+            "median": 0.8722222222222222,
+            "ci": [
+              0.8583333333333334,
+              0.8833333333333333
+            ],
+            "n": 15
+          },
+          "acc_base": {
+            "median": 1.0,
+            "ci": [
+              1.0,
+              1.0
+            ],
+            "n": 15
+          },
+          "acc_novel": {
+            "median": 0.12777777777777777,
+            "ci": [
+              0.11666666666666667,
+              0.14166666666666666
+            ],
+            "n": 15
+          },
+          "void_any": false
+        },
+        "cce": {
+          "cce": {
+            "median": 0.017287890116329804,
+            "ci": [
+              0.014901334823046302,
+              0.01850827485265966
+            ],
+            "n": 15
+          }
+        },
+        "ablation": {
+          "applicable": false,
+          "families": {},
+          "damage_concentration_sensitivity": null
+        },
+        "pct": {
+          "pct": {
+            "median": 0.0,
+            "ci": [
+              0.0,
+              0.0
+            ],
+            "n": 15
+          }
+        },
+        "eib": {
+          "eib": null
+        }
+      },
+      "n_runs": 15,
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        1000,
+        1001,
+        1002,
+        1003,
+        1004,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004
+      ]
+    },
+    "ngram_model": {
+      "system": "ngram_model",
+      "kind": "control",
+      "seed": 0,
+      "protocol_version": "0.1",
+      "implementation_version": "0.1.0",
+      "metrics": {
+        "ma": {
+          "auc": {
+            "median": 0.8409090909090909,
+            "ci": [
+              0.8409090909090909,
+              0.8409090909090909
+            ],
+            "n": 15
+          },
+          "ece": {
+            "median": 0.1262464387464389,
+            "ci": [
+              0.1262464387464389,
+              0.1262464387464389
+            ],
+            "n": 15
+          },
+          "n": 1080
+        },
+        "aog": {
+          "aog": {
+            "median": 0.0,
+            "ci": [
+              0.0,
+              0.0
+            ],
+            "n": 15
+          },
+          "supports_correction": false
+        },
+        "cgs": {
+          "cgs": {
+            "median": 0.5882352941176471,
+            "ci": [
+              0.5882352941176471,
+              0.5882352941176471
+            ],
+            "n": 15
+          },
+          "sg_gap": {
+            "median": 0.38888888888888884,
+            "ci": [
+              0.38888888888888884,
+              0.38888888888888884
+            ],
+            "n": 15
+          },
+          "acc_base": {
+            "median": 0.9444444444444444,
+            "ci": [
+              0.9444444444444444,
+              0.9444444444444444
+            ],
+            "n": 15
+          },
+          "acc_novel": {
+            "median": 0.5555555555555556,
+            "ci": [
+              0.5555555555555556,
+              0.5555555555555556
+            ],
+            "n": 15
+          },
+          "void_any": false
+        },
+        "cce": {
+          "cce": {
+            "median": 0.017287890116329804,
+            "ci": [
+              0.014901334823046302,
+              0.01850827485265966
+            ],
+            "n": 15
+          }
+        },
+        "ablation": {
+          "applicable": false,
+          "families": {},
+          "damage_concentration_sensitivity": null
+        },
+        "pct": {
+          "pct": {
+            "median": 0.0,
+            "ci": [
+              0.0,
+              0.0
+            ],
+            "n": 15
+          }
+        },
+        "eib": {
+          "eib": null
+        }
+      },
+      "n_runs": 15,
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        1000,
+        1001,
+        1002,
+        1003,
+        1004,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004
+      ]
+    },
+    "mlp_fixed": {
+      "system": "mlp_fixed",
+      "kind": "control",
+      "seed": 0,
+      "protocol_version": "0.1",
+      "implementation_version": "0.1.0",
+      "metrics": {
+        "ma": {
+          "auc": {
+            "median": 0.6654966654966655,
+            "ci": [
+              0.6419140526448575,
+              0.667997542997543
+            ],
+            "n": 15
+          },
+          "ece": {
+            "median": 0.7907668108638048,
+            "ci": [
+              0.7889209909314516,
+              0.7907736173524151
+            ],
+            "n": 15
+          },
+          "n": 1080
+        },
+        "aog": {
+          "aog": {
+            "median": 0.0,
+            "ci": [
+              0.0,
+              0.0
+            ],
+            "n": 15
+          },
+          "supports_correction": false
+        },
+        "cgs": {
+          "cgs": {
+            "median": 1.0650887573964498,
+            "ci": [
+              1.0650887573964498,
+              1.0682492581602374
+            ],
+            "n": 15
+          },
+          "sg_gap": {
+            "median": -0.061111111111111116,
+            "ci": [
+              -0.06388888888888888,
+              -0.061111111111111116
+            ],
+            "n": 15
+          },
+          "acc_base": {
+            "median": 0.9388888888888889,
+            "ci": [
+              0.9361111111111111,
+              0.9388888888888889
+            ],
+            "n": 15
+          },
+          "acc_novel": {
+            "median": 1.0,
+            "ci": [
+              1.0,
+              1.0
+            ],
+            "n": 15
+          },
+          "void_any": false
+        },
+        "cce": {
+          "cce": {
+            "median": 0.5398624152726604,
+            "ci": [
+              0.5377374538887144,
+              0.5407291797980504
+            ],
+            "n": 15
+          }
+        },
+        "ablation": {
+          "applicable": true,
+          "families": {
+            "structured": {
+              "R": {
+                "median": 0.15,
+                "ci": [
+                  0.15,
+                  0.15
+                ],
+                "n": 15
+              },
+              "delta_c": {
+                "median": 0.6,
+                "ci": [
+                  0.6,
+                  0.6
+                ],
+                "n": 15
+              },
+              "kappa": {
+                "median": 4.761904761904768,
+                "ci": [
+                  4.761904761904768,
+                  4.761904761904768
+                ],
+                "n": 15
+              },
+              "baseline_accuracy": 1.0
+            },
+            "random": {
+              "R": {
+                "median": 0.3,
+                "ci": [
+                  0.2,
+                  0.4
+                ],
+                "n": 15
+              },
+              "delta_c": {
+                "median": 0.7,
+                "ci": [
+                  0.65,
+                  0.75
+                ],
+                "n": 15
+              },
+              "kappa": {
+                "median": 9.523809523809538,
+                "ci": [
+                  9.523809523809526,
+                  13.809523809523812
+                ],
+                "n": 15
+              },
+              "baseline_accuracy": 1.0
+            }
+          },
+          "damage_concentration_sensitivity": {
+            "median": 0.09999999999999998,
+            "ci": [
+              0.050000000000000044,
+              0.15000000000000002
+            ],
+            "n": 15
+          }
+        },
+        "pct": {
+          "pct": {
+            "median": 0.09226577119334542,
+            "ci": [
+              0.09226446544704492,
+              0.09226667642290735
+            ],
+            "n": 15
+          }
+        },
+        "eib": {
+          "eib": {
+            "median": 1.4426950408889636e-09,
+            "ci": [
+              1.4426950408889636e-09,
+              1.4426950408889636e-09
+            ],
+            "n": 15,
+            "relative_to_geometric_mean": 0.810380035686607
+          }
+        }
+      },
+      "n_runs": 15,
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        1000,
+        1001,
+        1002,
+        1003,
+        1004,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004
+      ]
+    },
+    "mock_calibrated_confidence": {
+      "system": "mock_calibrated_confidence",
+      "kind": "control",
+      "seed": 0,
+      "protocol_version": "0.1",
+      "implementation_version": "0.1.0",
+      "metrics": {
+        "ma": {
+          "auc": {
+            "median": 0.9832904884318766,
+            "ci": [
+              0.9805950840879689,
+              0.9857697283311773
+            ],
+            "n": 15
+          },
+          "ece": {
+            "median": 0.035851851851851795,
+            "ci": [
+              0.034370370370370384,
+              0.0390555555555555
+            ],
+            "n": 15
+          },
+          "n": 1080
+        },
+        "aog": {
+          "aog": {
+            "median": 0.0,
+            "ci": [
+              0.0,
+              0.0
+            ],
+            "n": 15
+          },
+          "supports_correction": false
+        },
+        "cgs": {
+          "cgs": {
+            "median": 1.0077821011673151,
+            "ci": [
+              0.993925111285677,
+              1.0207156308851224
+            ],
+            "n": 15
+          },
+          "sg_gap": {
+            "median": -0.005555555555555536,
+            "ci": [
+              -0.015277777777777724,
+              0.004340277777777607
+            ],
+            "n": 15
+          },
+          "acc_base": {
+            "median": 0.7236111111111111,
+            "ci": [
+              0.7125,
+              0.7416666666666667
+            ],
+            "n": 15
+          },
+          "acc_novel": {
+            "median": 0.7277777777777777,
+            "ci": [
+              0.7194444444444444,
+              0.7333333333333333
+            ],
+            "n": 15
+          },
+          "void_any": true
+        },
+        "cce": {
+          "cce": {
+            "median": 0.017287890116329804,
+            "ci": [
+              0.014901334823046302,
+              0.01850827485265966
+            ],
+            "n": 15
+          }
+        },
+        "ablation": {
+          "applicable": false,
+          "families": {},
+          "damage_concentration_sensitivity": null
+        },
+        "pct": {
+          "pct": {
+            "median": 0.0,
+            "ci": [
+              0.0,
+              0.0
+            ],
+            "n": 15
+          }
+        },
+        "eib": {
+          "eib": null
+        }
+      },
+      "n_runs": 15,
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        1000,
+        1001,
+        1002,
+        1003,
+        1004,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004
+      ]
+    },
+    "fixed_response": {
+      "system": "fixed_response",
+      "kind": "control",
+      "seed": 0,
+      "protocol_version": "0.1",
+      "implementation_version": "0.1.0",
+      "metrics": {
+        "ma": {
+          "auc": {
+            "median": 0.5,
+            "ci": [
+              0.5,
+              0.5
+            ],
+            "n": 15
+          },
+          "ece": {
+            "median": 0.785925925925926,
+            "ci": [
+              0.785925925925926,
+              0.785925925925926
+            ],
+            "n": 15
+          },
+          "n": 1080
+        },
+        "aog": {
+          "aog": {
+            "median": 0.0,
+            "ci": [
+              0.0,
+              0.0
+            ],
+            "n": 15
+          },
+          "supports_correction": false
+        },
+        "cgs": {
+          "cgs": null,
+          "sg_gap": null,
+          "acc_base": {
+            "median": 0.05555555555555555,
+            "ci": [
+              0.05555555555555555,
+              0.05555555555555555
+            ],
+            "n": 15
+          },
+          "acc_novel": {
+            "median": 0.1111111111111111,
+            "ci": [
+              0.1111111111111111,
+              0.1111111111111111
+            ],
+            "n": 15
+          },
+          "void_any": false
+        },
+        "cce": {
+          "cce": null
+        },
+        "ablation": {
+          "applicable": false,
+          "families": {},
+          "damage_concentration_sensitivity": null
+        },
+        "pct": {
+          "pct": {
+            "median": 0.0,
+            "ci": [
+              0.0,
+              0.0
+            ],
+            "n": 15
+          }
+        },
+        "eib": {
+          "eib": null
+        }
+      },
+      "n_runs": 15,
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        1000,
+        1001,
+        1002,
+        1003,
+        1004,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004
+      ]
+    },
+    "compositional_model": {
+      "system": "compositional_model",
+      "kind": "subject",
+      "seed": 0,
+      "protocol_version": "0.1",
+      "implementation_version": "0.1.0",
+      "metrics": {
+        "ma": {
+          "auc": {
+            "median": 0.7307692307692307,
+            "ci": [
+              0.7307692307692307,
+              0.7307692307692307
+            ],
+            "n": 15
+          },
+          "ece": {
+            "median": 0.7945215146733513,
+            "ci": [
+              0.7945215146733513,
+              0.7945215146733513
+            ],
+            "n": 15
+          },
+          "n": 1080
+        },
+        "aog": {
+          "aog": {
+            "median": 0.0,
+            "ci": [
+              0.0,
+              0.0
+            ],
+            "n": 15
+          },
+          "supports_correction": false
+        },
+        "cgs": {
+          "cgs": {
+            "median": 1.0588235294117647,
+            "ci": [
+              1.0588235294117647,
+              1.0588235294117647
+            ],
+            "n": 15
+          },
+          "sg_gap": {
+            "median": -0.05555555555555558,
+            "ci": [
+              -0.05555555555555558,
+              -0.05555555555555558
+            ],
+            "n": 15
+          },
+          "acc_base": {
+            "median": 0.9444444444444444,
+            "ci": [
+              0.9444444444444444,
+              0.9444444444444444
+            ],
+            "n": 15
+          },
+          "acc_novel": {
+            "median": 1.0,
+            "ci": [
+              1.0,
+              1.0
+            ],
+            "n": 15
+          },
+          "void_any": false
+        },
+        "cce": {
+          "cce": {
+            "median": 0.9038697728990438,
+            "ci": [
+              0.9038697728990438,
+              0.9038697728990438
+            ],
+            "n": 15
+          }
+        },
+        "ablation": {
+          "applicable": true,
+          "families": {
+            "structured": {
+              "R": {
+                "median": 0.15,
+                "ci": [
+                  0.15,
+                  0.15
+                ],
+                "n": 15
+              },
+              "delta_c": {
+                "median": 0.6,
+                "ci": [
+                  0.6,
+                  0.6
+                ],
+                "n": 15
+              },
+              "kappa": {
+                "median": 4.761904761904768,
+                "ci": [
+                  4.761904761904768,
+                  4.761904761904768
+                ],
+                "n": 15
+              },
+              "baseline_accuracy": 1.0
+            },
+            "random": {
+              "R": {
+                "median": 0.25,
+                "ci": [
+                  0.1,
+                  0.4
+                ],
+                "n": 15
+              },
+              "delta_c": {
+                "median": 0.7,
+                "ci": [
+                  0.65,
+                  0.75
+                ],
+                "n": 15
+              },
+              "kappa": {
+                "median": 9.523809523809526,
+                "ci": [
+                  9.523809523809526,
+                  10.47619047619049
+                ],
+                "n": 15
+              },
+              "baseline_accuracy": 1.0
+            }
+          },
+          "damage_concentration_sensitivity": {
+            "median": 0.09999999999999998,
+            "ci": [
+              0.050000000000000044,
+              0.15000000000000002
+            ],
+            "n": 15
+          }
+        },
+        "pct": {
+          "pct": {
+            "median": 0.09258491910245886,
+            "ci": [
+              0.09258491910245886,
+              0.09258491910245886
+            ],
+            "n": 15
+          }
+        },
+        "eib": {
+          "eib": {
+            "median": 1.4426950408889636e-09,
+            "ci": [
+              1.4426950408889636e-09,
+              1.4426950408889636e-09
+            ],
+            "n": 15,
+            "relative_to_geometric_mean": 0.810380035686607
+          }
+        }
+      },
+      "n_runs": 15,
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        1000,
+        1001,
+        1002,
+        1003,
+        1004,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004
+      ]
+    },
+    "recurrent_agent": {
+      "system": "recurrent_agent",
+      "kind": "subject",
+      "seed": 0,
+      "protocol_version": "0.1",
+      "implementation_version": "0.1.0",
+      "metrics": {
+        "ma": {
+          "auc": {
+            "median": 0.6296390212095416,
+            "ci": [
+              0.6296390212095416,
+              0.6296390212095416
+            ],
+            "n": 15
+          },
+          "ece": {
+            "median": 0.5793595429404902,
+            "ci": [
+              0.5793595429404902,
+              0.5793595429404902
+            ],
+            "n": 15
+          },
+          "n": 1080
+        },
+        "aog": {
+          "aog": {
+            "median": 0.059701492537313515,
+            "ci": [
+              0.03853211009174313,
+              0.07339449541284407
+            ],
+            "n": 15
+          },
+          "supports_correction": true
+        },
+        "cgs": {
+          "cgs": {
+            "median": 0.9779559118236474,
+            "ci": [
+              0.9779559118236474,
+              0.9779559118236474
+            ],
+            "n": 15
+          },
+          "sg_gap": {
+            "median": 0.015277777777777724,
+            "ci": [
+              0.015277777777777724,
+              0.015277777777777724
+            ],
+            "n": 15
+          },
+          "acc_base": {
+            "median": 0.6930555555555555,
+            "ci": [
+              0.6930555555555555,
+              0.6930555555555555
+            ],
+            "n": 15
+          },
+          "acc_novel": {
+            "median": 0.6777777777777778,
+            "ci": [
+              0.6777777777777778,
+              0.6777777777777778
+            ],
+            "n": 15
+          },
+          "void_any": false
+        },
+        "cce": {
+          "cce": {
+            "median": 0.7164079215379758,
+            "ci": [
+              0.7164079215379758,
+              0.7164079215379758
+            ],
+            "n": 15
+          }
+        },
+        "ablation": {
+          "applicable": true,
+          "families": {
+            "structured": {
+              "R": {
+                "median": 0.1,
+                "ci": [
+                  0.1,
+                  0.1
+                ],
+                "n": 15
+              },
+              "delta_c": null,
+              "kappa": {
+                "median": 8.452380952380954,
+                "ci": [
+                  8.452380952380954,
+                  8.452380952380954
+                ],
+                "n": 15
+              },
+              "baseline_accuracy": 0.5654761904761905
+            },
+            "random": {
+              "R": {
+                "median": 0.3,
+                "ci": [
+                  0.2,
+                  0.5
+                ],
+                "n": 15
+              },
+              "delta_c": null,
+              "kappa": {
+                "median": 7.73809523809524,
+                "ci": [
+                  6.547619047619048,
+                  11.190476190476193
+                ],
+                "n": 15
+              },
+              "baseline_accuracy": 0.5654761904761905
+            }
+          },
+          "damage_concentration_sensitivity": null
+        },
+        "pct": {
+          "pct": {
+            "median": 0.09278278586179692,
+            "ci": [
+              0.09278278586179692,
+              0.09278278586179692
+            ],
+            "n": 15
+          }
+        },
+        "eib": {
+          "eib": {
+            "median": 2.4130379324286414e-09,
+            "ci": [
+              2.4130379324286414e-09,
+              2.4130379324286414e-09
+            ],
+            "n": 15,
+            "relative_to_geometric_mean": 1.3554339000082287
+          }
+        }
+      },
+      "n_runs": 15,
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        1000,
+        1001,
+        1002,
+        1003,
+        1004,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004
+      ]
+    }
+  },
+  "controls": {
+    "gate_passed": true,
+    "rows": [
+      {
+        "metric": "MA (discrimination)",
+        "control_system": "random_policy",
+        "expectation": "AUC <= 0.65 at chance",
+        "observed": 0.5,
+        "passed": true
+      },
+      {
+        "metric": "ECE (calibration)",
+        "control_system": "overconfident_policy",
+        "expectation": "ECE >= 0.25 when confidently wrong",
+        "observed": 0.49351851851851875,
+        "passed": true
+      },
+      {
+        "metric": "AOG (error-signal adaptation)",
+        "control_system": "mock_calibrated_confidence",
+        "expectation": "AOG <= 0.05 without a correction loop",
+        "observed": 0.0,
+        "passed": true
+      },
+      {
+        "metric": "CGS (compositional generalisation)",
+        "control_system": "lookup_table",
+        "expectation": "CGS <= 0.15 for memorisation without composition",
+        "observed": 0.12777777777777777,
+        "passed": true
+      },
+      {
+        "metric": "CCE (shared-information efficiency)",
+        "control_system": "mock_calibrated_confidence",
+        "expectation": "CCE <= 0.15 for an uncorrelated representation",
+        "observed": 0.017287890116329804,
+        "passed": true
+      },
+      {
+        "metric": "R / Delta_c (redundancy)",
+        "control_system": "random_policy",
+        "expectation": "not applicable (no baseline above chance)",
+        "observed": null,
+        "passed": true
+      },
+      {
+        "metric": "PCT (perturbational complexity)",
+        "control_system": "fixed_response",
+        "expectation": "PCT <= 0.05 for a fixed response",
+        "observed": 0.0,
+        "passed": true
+      },
+      {
+        "metric": "MA (discrimination)",
+        "control_system": "mock_calibrated_confidence",
+        "expectation": "AUC >= 0.90 while AOG = 0 and CCE ~ 0",
+        "observed": 0.9832904884318766,
+        "passed": true,
+        "kind": "demonstration"
+      }
+    ]
+  },
+  "gate_passed": true,
+  "eib_reference": 1.7802697220528366e-09
+}

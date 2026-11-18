@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="170.0" height="84.0" viewBox="0 0 170.0 84.0" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif">
+<title>Reference systems and their control bindings</title>
+<text x="6.00" y="10.00" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif" font-size="9.5" fill="#16181d" text-anchor="start" font-weight="bold">Figure 5. Reference systems and designated control bindings.</text>
+<text x="6.00" y="16.50" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif" font-size="8" fill="#5b6472" text-anchor="start" font-weight="normal">Every metric must fall on the system listed as its control; the test suite fails otherwise.</text>
+<rect x="6.00" y="24.00" width="158.00" height="6.60" rx="3" fill="#f2f4f7" stroke="none" stroke-width="1.0" opacity="1.0"/>
+<circle cx="10.00" cy="27.30" r="1.60" fill="#8c2f2f" stroke="#8c2f2f" stroke-width="1.0"/>
+<text x="14.00" y="28.60" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif" font-size="7.2" fill="#16181d" text-anchor="start" font-weight="normal">thermostat / PID</text>
+<text x="58.00" y="28.60" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif" font-size="7.0" fill="#8c2f2f" text-anchor="start" font-weight="bold">control</text>
+<text x="80.00" y="28.60" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif" font-size="6.9" fill="#5b6472" text-anchor="start" font-weight="normal">integration-like criteria can be satisfied trivially</text>
+<rect x="6.00" y="31.00" width="158.00" height="6.60" rx="3" fill="#ffffff" stroke="none" stroke-width="1.0" opacity="1.0"/>
+<circle cx="10.00" cy="34.30" r="1.60" fill="#8c2f2f" stroke="#8c2f2f" stroke-width="1.0"/>
+<text x="14.00" y="35.60" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif" font-size="7.2" fill="#16181d" text-anchor="start" font-weight="normal">random policy</text>
+<text x="58.00" y="35.60" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif" font-size="7.0" fill="#8c2f2f" text-anchor="start" font-weight="bold">control</text>
+<text x="80.00" y="35.60" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif" font-size="6.9" fill="#5b6472" text-anchor="start" font-weight="normal">MA ≈ 0.5, AOG = 0, R ≈ 0</text>
+<rect x="6.00" y="38.00" width="158.00" height="6.60" rx="3" fill="#f2f4f7" stroke="none" stroke-width="1.0" opacity="1.0"/>
+<circle cx="10.00" cy="41.30" r="1.60" fill="#8c2f2f" stroke="#8c2f2f" stroke-width="1.0"/>
+<text x="14.00" y="42.60" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif" font-size="7.2" fill="#16181d" text-anchor="start" font-weight="normal">lookup table</text>
+<text x="58.00" y="42.60" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif" font-size="7.0" fill="#8c2f2f" text-anchor="start" font-weight="bold">control</text>
+<text x="80.00" y="42.60" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif" font-size="6.9" fill="#5b6472" text-anchor="start" font-weight="normal">perfect retrieval, no composition: CGS ≈ 0</text>
+<rect x="6.00" y="45.00" width="158.00" height="6.60" rx="3" fill="#ffffff" stroke="none" stroke-width="1.0" opacity="1.0"/>
+<circle cx="10.00" cy="48.30" r="1.60" fill="#8c2f2f" stroke="#8c2f2f" stroke-width="1.0"/>
+<text x="14.00" y="49.60" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif" font-size="7.2" fill="#16181d" text-anchor="start" font-weight="normal">n-gram model</text>
+<text x="58.00" y="49.60" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif" font-size="7.0" fill="#8c2f2f" text-anchor="start" font-weight="bold">control</text>
+<text x="80.00" y="49.60" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif" font-size="6.9" fill="#5b6472" text-anchor="start" font-weight="normal">below transformer on composition, above on retrieval</text>
+<rect x="6.00" y="52.00" width="158.00" height="6.60" rx="3" fill="#f2f4f7" stroke="none" stroke-width="1.0" opacity="1.0"/>
+<circle cx="10.00" cy="55.30" r="1.60" fill="#8c2f2f" stroke="#8c2f2f" stroke-width="1.0"/>
+<text x="14.00" y="56.60" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif" font-size="7.2" fill="#16181d" text-anchor="start" font-weight="normal">feed-forward MLP</text>
+<text x="58.00" y="56.60" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif" font-size="7.0" fill="#8c2f2f" text-anchor="start" font-weight="bold">control</text>
+<text x="80.00" y="56.60" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif" font-size="6.9" fill="#5b6472" text-anchor="start" font-weight="normal">isolates the contribution of recurrence</text>
+<rect x="6.00" y="59.00" width="158.00" height="6.60" rx="3" fill="#ffffff" stroke="none" stroke-width="1.0" opacity="1.0"/>
+<circle cx="10.00" cy="62.30" r="1.60" fill="#1f5f8b" stroke="#1f5f8b" stroke-width="1.0"/>
+<text x="14.00" y="63.60" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif" font-size="7.2" fill="#16181d" text-anchor="start" font-weight="normal">tiny transformer</text>
+<text x="58.00" y="63.60" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif" font-size="7.0" fill="#1f5f8b" text-anchor="start" font-weight="bold">subject</text>
+<text x="80.00" y="63.60" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif" font-size="6.9" fill="#5b6472" text-anchor="start" font-weight="normal">reference digital system</text>
+<rect x="6.00" y="66.00" width="158.00" height="6.60" rx="3" fill="#f2f4f7" stroke="none" stroke-width="1.0" opacity="1.0"/>
+<circle cx="10.00" cy="69.30" r="1.60" fill="#1f5f8b" stroke="#1f5f8b" stroke-width="1.0"/>
+<text x="14.00" y="70.60" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif" font-size="7.2" fill="#16181d" text-anchor="start" font-weight="normal">GRU agent</text>
+<text x="58.00" y="70.60" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif" font-size="7.0" fill="#1f5f8b" text-anchor="start" font-weight="bold">subject</text>
+<text x="80.00" y="70.60" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif" font-size="6.9" fill="#5b6472" text-anchor="start" font-weight="normal">reference system with online correction</text>
+<rect x="6.00" y="73.00" width="158.00" height="6.60" rx="3" fill="#ffffff" stroke="none" stroke-width="1.0" opacity="1.0"/>
+<circle cx="10.00" cy="76.30" r="1.60" fill="#8c2f2f" stroke="#8c2f2f" stroke-width="1.0"/>
+<text x="14.00" y="77.60" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif" font-size="7.2" fill="#16181d" text-anchor="start" font-weight="normal">mock calibrated confidence</text>
+<text x="58.00" y="77.60" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif" font-size="7.0" fill="#8c2f2f" text-anchor="start" font-weight="bold">control</text>
+<text x="80.00" y="77.60" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif" font-size="6.9" fill="#5b6472" text-anchor="start" font-weight="normal">high MA, low AOG — MA ≠ self-model</text>
+<text x="6.00" y="86.00" font-family="Helvetica,Arial,'DejaVu Sans',sans-serif" font-size="7.2" fill="#16181d" text-anchor="start" font-weight="normal">The mock calibrated-confidence system is the protocol's built-in refutation of an over-claimed metric: a system can be fluent in its own confidence and still have no self-model.</text>
+</svg>
