@@ -9,8 +9,8 @@ version: 0.1.0
 date-released: "2026-11-18"
 license: MIT
 repository-code: "https://github.com/Balanov/protennoia"
-url: "https://github.com/Balanov/protennoia"
-doi: "10.5281/zenodo.XXXXXXX"
+url: https://github.com/Balanov/protennoia/releases/tag/v0.1.0
+url: https://github.com/Balanov/protennoia/releases/tag/v0.1.0
 authors:
   - family-names: Balanov
     given-names: Anton N.

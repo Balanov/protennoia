@@ -149,7 +149,7 @@ disagreement between families is reported as a finding rather than resolved sile
   title   = {Protennoia Protocol v0.1: an operational measurement protocol for AI cognitive candidacy},
   year    = {2026},
   version = {0.1.0},
-  doi     = {10.5281/zenodo.XXXXXXX},
+  url     = {https://github.com/Balanov/protennoia/releases/tag/v0.1.0},
   url     = {https://github.com/Balanov/protennoia}
 }
 ```
