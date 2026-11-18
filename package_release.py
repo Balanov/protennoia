@@ -24,6 +24,8 @@ INCLUDE_FILES = [
     "LICENSE",
     "README.md",
     "requirements.txt",
+    "merge_live.py",
+    "package_release.py",
 ]
 INCLUDE_DIRS = ["protennoia", "tests", "docs", "results", "paper"]
 EXCLUDE_DIRS = {"__pycache__", ".git", ".mypy_cache", ".pytest_cache"}
@@ -61,7 +63,7 @@ def main(argv=None):
         for d in INCLUDE_DIRS:
             full = os.path.join(HERE, d)
             if os.path.isdir(full):
-                add_tree(zf, full, prefix="")
+                add_tree(zf, full, prefix=f"{d}/")
 
     size = os.path.getsize(out)
     with zipfile.ZipFile(out) as zf:
