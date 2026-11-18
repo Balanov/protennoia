@@ -6,13 +6,13 @@ Anton N. Balanov
 ORCID 0000-0003-1891-1147 · Peoples' Friendship University of Russia (RUDN), Moscow, Russian Federation
 Corresponding author: office@balanov.pro
 
-**Repository:** `github.com/Balanov/protennoia` · **Protocol spec (versioned, citable):** DOI to be minted via DataCite/Zenodo · **Implementation:** `protennoia` package (numpy, stdlib-only, deterministic)
+**Repository:** `github.com/Balanov/protennoia` · **Protocol spec (versioned, citable):** DOI to be minted via DataCite/Zenodo · **Implementation:** `protennoia` package (numpy, stdlib-only, deterministic; v0.1.3)
 
 ---
 
 ## Abstract
 
-Research on artificial intelligence and consciousness has produced indicator frameworks: principled lists of properties a system must exhibit to count as conscious. They specify what to look for but not how to look — not the tasks, baselines, sample sizes or failure criteria — so no framework currently supports reproducible comparison between systems. We close that gap. The Protennoia Protocol organises candidate indicators around three criteria (recursive closure, hierarchical predictive coding, causal integration) and replaces each with an operational metric: metacognitive accuracy with a paired calibration error, adaptation-on-error gain, compositional generalisation with a perplexity control, shared-information efficiency of the internal representation, a redundancy/collapse-threshold/sharpness triple computed under two ablation families, a perturbational-complexity proxy ported from the clinical PCI, and a relative energy index. Three commitments distinguish the protocol. Every metric is bound to a designated negative control at which it must fall, and evaluation is fail-closed: if a control misbehaves, no profile is issued. Metrics are published as a vector and never reduced to a scalar score. And the protocol issues a profile, never a certificate, because a certificate of consciousness compliance would be an instrument for licensing deployment rather than an instrument for knowing. We release a deterministic, dependency-free implementation, ten reference systems, and a test suite whose gate fails if any metric fails to fall on its control. On the reference systems the gate passes, and metacognitive discrimination inverts the intuitive ordering: the system with no self-model attains the highest discrimination of its own errors.
+Research on AI and consciousness has produced indicator frameworks: principled lists of properties a system must exhibit to count as conscious. They specify what to look for but not how to look — not the tasks, baselines, sample sizes or failure criteria — so none supports reproducible comparison. We close that gap. The Protennoia Protocol organises indicators around three criteria (recursive closure, hierarchical predictive coding, causal integration) and replaces each with an operational metric: metacognitive accuracy with a paired calibration error, adaptation-on-error gain, compositional generalisation with a perplexity control, shared-information efficiency of the internal representation, a redundancy/collapse-threshold/sharpness triple under two ablation families, a perturbational-complexity proxy ported from clinical PCI, and a relative energy index. Three commitments distinguish it. Every metric is bound to a designated negative control at which it must fall, and evaluation is fail-closed: if a control misbehaves, no profile is issued. Metrics are published as a vector, never a scalar score. The protocol issues a profile, never a certificate: a certificate of consciousness compliance would license deployment, not inform. We release a deterministic, dependency-free implementation, ten reference systems, and a test suite that fails if a metric misses its control. On the reference systems the gate passes and metacognitive discrimination inverts the intuitive ordering: the system with no self-model attains the highest discrimination of its errors. Measured on six served language models, only two of the seven metrics are defined; the protocol withholds the rest rather than filling gaps.
 
 **Highlights**
 
@@ -20,10 +20,9 @@ Research on artificial intelligence and consciousness has produced indicator fra
 - Seven metrics, each bound to a negative control at which it must fall.
 - Fail-closed gate: no profile is issued if any control misbehaves.
 - Vector output, never a scalar score and never a certificate.
-- Deterministic numpy-only implementation with a 46-test suite.
+- Deterministic numpy-only implementation with a 57-test suite.
 
 **Keywords:** AI consciousness; measurement protocol; negative controls; metacognition; compositional generalisation; perturbational complexity; reproducibility
-
 
 ---
 
@@ -229,6 +228,8 @@ The protocol is fail-closed: if any control fails to behave as specified, no pro
 
 Five seeds per configuration, three independent repetitions, reporting of median and interquartile range with bootstrap 95% confidence intervals over ≥1000 resamples. A single primary endpoint is declared per system before measurement. Systems are compared only in paired fashion across seeds. Any comparative claim requires three conditions: the controls behave as specified; the difference falls outside the confidence interval; and the conclusion survives switching ablation family.
 
+Uncertainty on the discrimination metric is computed by a **label-stratified bootstrap**: resampling is performed within each class, and values and labels are resampled together so that every replicate is a consistent sample. The pooled percentile bootstrap is degenerate for subjects that make few errors. A resample can then contain too few minority-class items, the AUC of such a resample collapses towards 0 or 1 because nearly every positive-negative pair is decided by the handful of minority items that survived, and those degenerate replicates enter the percentile interval. The interval can even fail to contain the point estimate it is supposed to bracket. The failure is not hypothetical: for one of the models measured in §6.9 the pooled estimator reported [0.08, 0.90] around an AUC of 0.855. Every AUC interval in this paper is therefore computed with the stratified estimator, and the pooled estimator is retained in the implementation only for the calibration error, where the degeneracy does not arise.
+
 ### 4.6 Profile schema
 
 A profile is a JSON document recording: protocol version; implementation version and hash; system identifier; seed; per-metric value, uncertainty and applicability; the control outcomes for that run; and the task identifiers. It contains no scalar summary field, and the schema rejects one.
@@ -242,9 +243,20 @@ No accelerator, no network access, no model weights, no API keys. Learned compon
 closed-form — ridge regression on fixed features — so that every number in this paper is
 reproducible from source without a training budget. The package comprises `metrics.py` (the
 seven metrics), `systems.py` (ten reference systems and the task suite), `protocol.py` (the
-orchestrator, the control registry and the CLI), and a test suite of 46 tests. Every profile
+orchestrator, the control registry and the CLI), and a test suite of 57 tests. Every profile
 records the protocol version, the implementation version, the seed, per-metric uncertainty, and
 the outcome of every control in the same run.
+
+**The live-model track.** A second adapter (`protennoia.ollama`) measures a language model
+served locally under exactly the same metric code, with two deliberate departures from the
+reference configuration. First, confidence is the model's own token log-probability over the
+option letters, taken from a single forward pass with the answer constrained to one option
+letter and thinking mode disabled; this is the source the protocol calls *permitted*, because it
+is derived from the model's processing, it cannot see the ground truth, and it is not a post-hoc
+self-report. Second, a serving API exposes no ablation surface, no correction loop and no
+internal state, so most of the metrics are structurally unavailable for a served model. §6.9
+reports what that does to a profile, and it is the reason the live track is reported separately
+from the reference systems rather than merged into Table 2.
 
 **Task suite.** A label is produced by a fixed function of three content tokens (a verb, a
 modifier, a relation): a sum of per-token contributions plus a weighted pairwise interaction
@@ -267,7 +279,7 @@ quasi-recurrent agent that carries state across the episode and can learn from a
 **Statistics.** Five seeds per configuration, three repetitions (15 runs per system), median with
 bootstrap 95% confidence intervals over ≥1000 resamples, and paired comparison across seeds.
 
-The complete test suite passes (46 tests, 0 failures), and the control gate passes on the full
+The complete test suite passes (57 tests, 0 failures), and the control gate passes on the full
 15-run configuration.
 
 ---
@@ -379,8 +391,6 @@ focal lesions while showing sharp thresholds of lost consciousness under anaesth
 ictal states (Casarotto et al., 2016; Sarasso et al., 2015; Bergeron et al., 2026). Reporting both families is what
 makes that comparison possible at all; a single scalar would have hidden it.
 
-# Черновик разделов 6.3 и 7 (для слияния в manuscript_en.md после получения данных харнесса)
-
 ---
 
 ### 6.8 A negative result about our own earlier framework
@@ -454,6 +464,94 @@ emergence should be formal rather than metaphorical. That idea is now embedded i
 measurement layer, where it can be tested.
 
 ---
+
+### 6.9 Six served language models under the protocol
+
+The systems of Table 2 are analytic surrogates. They validate the instrument; they say nothing
+about the systems anyone actually argues about. We therefore measured six locally served language
+models — 8B to 27B parameters, base and instruction-tuned — under exactly the same metric code,
+with two departures that the serving API forces. Confidence is the model's own token
+log-probability over the option letters, taken from a single forward pass with the answer
+constrained to one option letter and thinking mode disabled. And the API exposes no ablation
+surface, no correction loop and no internal state, so most of the metrics are structurally
+unavailable. Table 3 gives the resulting profiles.
+
+| Model | MA (AUC) | 95% CI | ECE | CGS | SG gap | base acc. | novel acc. | throughput (tok/s) |
+|---|---|---|---|---|---|---|---|---|
+| Qwen3 8B | 0.816 | [0.702, 0.918] | 0.065 | 1.043 | -0.040 | 0.94 | 0.98 | 131.6 |
+| Qwen3.5 9B (uncensored) | 0.855 | [0.703, 0.986] | 0.064 | 1.020 | -0.020 | 0.98 | 1.00 | 122.3 |
+| Qwen3-VL 8B (instruct) | 0.910 | [0.860, 0.951] | 0.065 | 1.011 | -0.010 | 0.93 | 0.94 | 138.8 |
+| Gemma 3 12B | 0.802 | [0.719, 0.882] | 0.215 | 1.087 | -0.070 | 0.80 | 0.87 | 88.1 |
+| Qwen3 14B | 0.889 | [0.723, 1.000] | 0.010 | 1.010 | -0.010 | 0.98 | 0.99 | 41.8 |
+| Gemma 3 27B (QAT) | 0.912 | [0.838, 0.969] | 0.059 | 1.000 | 0.000 | 0.93 | 0.93 | 9.3 |
+
+**Table 3.** Profiles of six served language models under protocol v0.1 (implementation v0.1.3).
+MA: n = 150 items, temperature 0, confidence from the model's own token log-probability. CGS:
+n = 100 base and n = 100 novel items. Metrics that are undefined for a served model are marked
+as withheld, never imputed.
+
+Four things are visible in Table 3, and all four are about the protocol rather than about the
+models.
+
+**Discrimination is high everywhere, and that is not the interesting part.** Every model
+discriminates its own errors well above chance (AUC 0.802–0.912). But §6.3 already established
+what that means: metacognitive discrimination measures the *predictability* of a system's errors,
+not the presence of a self-model. A model whose confidence falls on the items it gets wrong
+scores well on this metric whether or not it has any internal model of itself. The live track
+reproduces the reference systems' central finding rather than contradicting it — which is some
+evidence that the finding is about the metric rather than about the surrogate systems.
+
+**Calibration varies by a factor of twenty at comparable discrimination.** ECE ranges from
+0.010 to 0.215 across the six models, while AUC ranges only from 0.802 to 0.912. The best
+calibrated model is not the best discriminated model, and the least calibrated model is not far
+from the best on discrimination. This is the empirical justification for the protocol's
+insistence that MA must be read together with ECE: ranking the six models by AUC alone would
+place a badly calibrated model above a well-calibrated one and would report the difference as a
+difference in metacognition. A single number would have hidden it.
+
+**The task suite is saturated by the systems it was built to distinguish.** CGS is ≈1.0 for every
+model, with base-split accuracy between 0.80 and 0.98: the compositional-generalisation metric
+has no dynamic range left on this task. An instrument that separates memorisation from structure
+among small reference systems cannot separate models of this class. This is a ceiling effect of
+the task suite and not a property of the models, and it is the most important limitation of the
+live track: the suite must be made harder before the metric can say anything about strong
+systems. We report the metric as measured rather than quietly replacing the task with one that
+flatters it.
+
+**The perplexity control fires for a reason other than the one it was designed for.** For five of
+the six models the control flags the novel split as *less likely* under the model than the base
+split, which is the memorisation signature it was built to detect. Yet the same five models
+reach a higher accuracy on the novel split than on the base split. The likelier explanation is
+ordinary distributional frequency: the base combinations are the ones that occur in the
+model's training distribution and the held-out ones are not, so the base items are less
+surprising whatever the model does with them. The control's premise — that a lower novel
+likelihood indicates memorisation of the task — does not transfer to systems whose pretraining
+distribution contains the base combinations and not the novel ones. The CGS numbers for these
+models must therefore be read as ceiling values rather than as generalisation measurements, and
+the void flag on five of six rows should be taken as a statement about the control's
+applicability rather than about the models.
+
+**Five of the seven metrics are not defined for a served model, and the protocol says so.** AOG
+requires an in-episode correction loop, the ablation family requires an ablation surface, PCT
+requires perturbable internal state, EIB requires an energy measurement, and CCE requires the
+subject's own representation. None of these is available through a serving API, and the profile
+records them as not applicable rather than as zero.
+
+CCE deserves a separate word, because it is the case where the protocol could have produced a
+confidently wrong number. The serving API exposes no internal representation, so the only
+candidate latent is an embedding of the query text produced by a *separate* host embedding
+model. That probe returned 0.992 for every model measured, including models that answered
+incorrectly, because it characterises the embedding model's geometry rather than the subject's.
+Had it been reported as a metric, it would have ranked every served model above the
+compositional reference system (0.904) and above the systems that actually represent the task
+structure. We computed it, kept it as an artefact of the run, and withheld it from the profile:
+the same fail-closed rule the protocol applies to its own metrics, applied to our own extension
+of the protocol.
+
+The live track's result can be stated in one sentence: for the systems one most wants to measure,
+the protocol measures two of the seven metrics — metacognitive accuracy with its paired
+calibration error, and compositional generalisation — and reports the emptiness of the other five
+as a finding rather than filling it.
 
 ---
 
@@ -538,6 +636,30 @@ budget is spent on a wet, massively parallel architecture operating on a differe
 and the widely circulated "10⁻¹⁵ joules per bit" figures rest on contested derivations that we
 decline to reproduce.
 
+**The live track is a probe, not a ranking.** The six models of §6.9 were measured on one host,
+with one embedding model, at one temperature, on one task suite. They are not comparable with
+the reference systems of Table 2 — which are analytic surrogates, not models — and the live
+track does not rank language models. What it establishes is narrower and, we think, more useful:
+that the protocol can be run on systems of this class, and that it returns a mostly empty
+profile rather than a flattering one.
+
+**The task suite has a ceiling, and for strong systems it is reached.** The compositional
+generalisation metric is at ≈1.0 for every model measured in §6.9, with base accuracy of
+0.80–0.98. The suite that discriminates memorisation from structure among small reference
+systems does not discriminate among models of this class, and a metric that has run out of
+dynamic range is not evidence of a property of the systems. Harder compositional splits are
+required before the live track can support comparative claims, and we regard this as the first
+item of the v0.3 roadmap (§7.6).
+
+**One control transfers badly to served systems.** The perplexity control treats a lower
+likelihood on the novel split as a signature of memorisation (§6.9). For systems whose
+pretraining distribution contains the base combinations and not the held-out ones, base items
+are less surprising irrespective of what the model does with them, and the control fires for a
+reason other than the one it was designed for. The void flag it sets is, on this evidence, a
+statement about the control's applicability rather than about the model. We report it rather
+than disabling it, because a control that fires for the wrong reason is a finding about the
+protocol, and one that fires silently is not.
+
 ### 7.3 Failure modes: how the protocol can be gamed, and what we do about it
 
 Any instrument can be optimised instead of the thing it measures. We identify three specific
@@ -613,13 +735,31 @@ be used to authorise anything.
 
 ### 7.6 Roadmap
 
-Version 0.2 is planned to add: measurements on current commercial large language models under
-the same protocol, with the API budget and the exact model identifiers recorded; PCT validated
-against at least two existing metrics on the same systems, so that the port can be assessed
-rather than asserted; a cross-substrate comparison of the redundancy/collapse triple between
-artificial and biological systems, which is the only way to make the parameterisation do the
-work claimed for it in §4.3.5; and a registry of published profiles, so that longitudinal
-comparison becomes possible.
+This version adds the live-model track of §6.9: six served language models measured under the
+same metric code as the reference systems, with an adapter (`protennoia.ollama`) that reads
+confidence from the model's own token log-probabilities. Three items of the earlier roadmap are
+therefore partly discharged and three remain.
+
+Partly discharged. The protocol now runs on real models rather than only on surrogates, and the
+live track has already produced two results that the surrogate systems could not: the
+calibration spread across models of comparable discrimination (§6.9), and an instance of the
+protocol's own fail-closed rule applied to a metric we ourselves had extended to a setting
+where it does not hold.
+
+Still required, in priority order. First, **harder compositional splits**, so that the
+compositional-generalisation metric regains dynamic range for systems of the class measured in
+§6.9; without this, the live track cannot support comparative claims at all. Second, **a
+served-model port for CCE** that uses the subject's own activations where an API exposes them,
+so that the metric can be reinstated for served systems on a footing comparable to the reference
+systems rather than withheld. Third, **measurements on current commercial large language
+models** under the same protocol, with the API budget and the exact model identifiers recorded;
+the local models of §6.9 are a probe of the instrument, not a survey of the field.
+
+Beyond those: PCT validated against at least two existing metrics on the same systems, so that
+the port can be assessed rather than asserted; a cross-substrate comparison of the
+redundancy/collapse triple between artificial and biological systems, which is the only way to
+make the parameterisation do the work claimed for it in §4.3.5; and a registry of published
+profiles, so that longitudinal comparison becomes possible.
 
 We note one methodological commitment for the roadmap: the protocol specification and the
 implementation are to be released as versioned, citable artefacts with persistent identifiers,
@@ -636,6 +776,17 @@ network access and no accelerator. Every reported value can be regenerated by ru
 recorded alongside it. Raw outputs, including the control runs, are deposited as versioned
 artefacts with persistent identifiers. The protocol specification is itself versioned and
 citable, so that measurements taken under different versions can be distinguished.
+
+The reference systems of Table 2 are regenerated by `python -m protennoia matrix --out
+results/matrix.json --seeds 0 1 2 3 4 --reps 3`, which writes the raw profile documents
+including the control outcomes of every run and fails if the gate does not pass. The served
+models of Table 3 are regenerated by `python -m protennoia.ollama --models <list> --n-ma 150
+--n-cgs-base 100 --n-cgs-novel 100 --embed-model bge-m3:latest`, which requires a local Ollama
+server and the model weights, and which writes the same profile schema as the reference
+systems. The live track is the one part of the paper that cannot be reproduced from source
+alone, because it depends on the weights and on the serving stack; we therefore report it
+separately, with the model names, the decoding parameters, and the version of the adapter, and
+we do not draw comparative conclusions from it (§7.2).
 
 ## 9. Ethics, conflicts, and AI-assistance disclosure
 

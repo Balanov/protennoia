@@ -69,13 +69,13 @@ $ python -m protennoia selftest
 Protennoia Protocol v0.1 -- control gate
 ------------------------------------------------------------------------
 MA (discrimination)                 | random_policy                | PASS | observed=0.5000
-ECE (calibration)                   | overconfident_policy         | PASS | observed=0.5118
+ECE (calibration)                   | overconfident_policy         | PASS | observed=0.5083
 AOG (error-signal adaptation)       | mock_calibrated_confidence   | PASS | observed=0.0000
-CGS (compositional generalisation)  | lookup_table                 | PASS | observed=0.1250
+CGS (compositional generalisation)  | lookup_table                 | PASS | observed=0.1264
 CCE (shared-information efficiency) | mock_calibrated_confidence   | PASS | observed=0.0198
 R / Delta_c (redundancy)            | random_policy                | PASS | observed=None
 PCT (perturbational complexity)     | fixed_response               | PASS | observed=0.0000
-MA (discrimination)                 | mock_calibrated_confidence   | PASS | observed=0.9325
+MA (discrimination)                 | mock_calibrated_confidence   | PASS | observed=0.9800
 ------------------------------------------------------------------------
 GATE: PASSED
 ```
@@ -119,7 +119,46 @@ Ten systems spanning the relevant behavioural space. Eight are controls; two are
 | `recurrent_agent` | subject | carries state, can learn from an error signal |
 
 The reference systems are analytic surrogates, not competitive models. The purpose of v0.1 is to
-validate the *measurement layer*. Applying the protocol to real language models is v0.2.
+validate the *measurement layer*.
+
+## Measuring real language models
+
+`protennoia.ollama` applies the same metric code to a language model served locally by
+[Ollama](https://ollama.com). It exists because a protocol validated only on surrogates validates
+the instrument, not the question.
+
+```bash
+python -m protennoia.ollama \
+  --models qwen3:8b gemma3-12b:latest qwen3:14b \
+  --n-ma 150 --n-cgs-base 100 --n-cgs-novel 100 \
+  --embed-model bge-m3:latest \
+  --out results/ollama_matrix.json
+```
+
+Confidence is the model's own token log-probability over the option letters, taken from a single
+forward pass with the answer constrained to one option letter and thinking mode disabled. It
+cannot see the ground truth and it is not a post-hoc self-report.
+
+Two things are worth knowing before you read such a profile. First, **most of the metrics are not
+defined for a served model**: the API exposes no ablation surface, no correction loop and no
+internal state, so AOG, the ablation family, PCT, EIB and CCE are reported as not applicable
+rather than as zero. Second, **the CCE probe is withheld**: the only latent a serving API can
+offer is an embedding of the query text produced by a *separate* host embedding model, which
+characterises that embedding model rather than the subject — it saturates near 1.0 for every
+model measured, including ones that answer incorrectly. The probe value is kept as an artefact
+of the run and the metric is withheld from the profile: the fail-closed rule applied to our own
+extension of the protocol.
+
+The first results, on six models from 8B to 27B, are in §6.9 of the accompanying paper.
+
+## Uncertainty on the discrimination metric
+
+The AUC confidence interval is a **label-stratified** bootstrap: resampling is performed within
+each class, and values and labels are resampled together. The pooled percentile bootstrap is
+degenerate for subjects with few errors — a resample can contain too few minority-class items,
+the AUC of such a resample collapses towards 0 or 1, and the interval can even fail to contain
+the point estimate it is supposed to bracket. For one of the models in the live track the pooled
+estimator reported `[0.08, 0.90]` around an AUC of `0.855`.
 
 ## Why the ablation index was replaced
 
@@ -146,10 +185,10 @@ disagreement between families is reported as a finding rather than resolved sile
 ```bibtex
 @software{balanov2026protennoia,
   author  = {Balanov, Anton N.},
-  title   = {Protennoia Protocol v0.1: an operational measurement protocol for AI cognitive candidacy},
+  title   = {Protennoia Protocol: an operational measurement protocol for AI cognitive candidacy},
   year    = {2026},
-  version = {0.1.0},
-  url     = {https://github.com/Balanov/protennoia/releases/tag/v0.1.0},
+  version = {0.1.3},
+  url     = {https://github.com/Balanov/protennoia/releases/tag/v0.1.3},
   url     = {https://github.com/Balanov/protennoia}
 }
 ```

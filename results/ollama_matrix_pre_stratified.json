@@ -1,0 +1,424 @@
+{
+  "protocol_version": "0.1",
+  "implementation_version": "0.1.0",
+  "systems": {
+    "ollama:qwen3:8b": {
+      "system": "ollama:qwen3:8b",
+      "kind": "subject",
+      "seed": 0,
+      "protocol_version": "0.1",
+      "implementation_version": "0.1.0",
+      "metrics": {
+        "ma": {
+          "auc": 0.8164285714285714,
+          "auc_ci": [
+            0.3206964285714286,
+            0.6800535714285715
+          ],
+          "ece": 0.06511185115255506,
+          "ece_ci": [
+            0.0547674332195057,
+            0.08070061997700835
+          ],
+          "brier": 0.06345037211480221,
+          "n": 150,
+          "applicable": true
+        },
+        "aog": {
+          "aog": 0.0,
+          "applicable": false,
+          "note": "no in-episode correction loop for a served LLM"
+        },
+        "cgs": {
+          "cgs": 1.0425531914893618,
+          "sg_gap": -0.040000000000000036,
+          "acc_base": 0.94,
+          "acc_novel": 0.98,
+          "nll_base": 0.28189945311921566,
+          "nll_novel": 0.01825071562918938,
+          "void": true,
+          "applicable": true
+        },
+        "cce": {
+          "cce": 0.9916666666666674,
+          "trace_total": 0.08421775897650136,
+          "trace_between": 0.0835159443183639,
+          "applicable": true
+        },
+        "ablation": {
+          "applicable": false,
+          "note": "no ablation surface exposed by the serving API"
+        },
+        "pct": {
+          "pct": null,
+          "applicable": false,
+          "note": "perturbation probe not defined for a served model"
+        },
+        "eib": {
+          "eib": null,
+          "applicable": false,
+          "throughput_tokens_per_s": 147.08805573544657
+        }
+      },
+      "n_ma_items": 150,
+      "n_cgs_base": 100,
+      "n_cgs_novel": 100,
+      "notes": [
+        "Confidence is the model's own token log-probability over the option letters.",
+        "Energy is a throughput proxy, not joules: absolute energy is not measurable on this host.",
+        "Ablation and perturbational-complexity metrics are not applicable to a served model."
+      ]
+    },
+    "ollama:gemma3-12b:latest": {
+      "system": "ollama:gemma3-12b:latest",
+      "kind": "subject",
+      "seed": 0,
+      "protocol_version": "0.1",
+      "implementation_version": "0.1.0",
+      "metrics": {
+        "ma": {
+          "auc": 0.8023828023828024,
+          "auc_ci": [
+            0.3891349391349392,
+            0.6186221186221186
+          ],
+          "ece": 0.2153404462923913,
+          "ece_ci": [
+            0.20665110109894586,
+            0.22633547191464412
+          ],
+          "brier": 0.20834421021412794,
+          "n": 150,
+          "applicable": true
+        },
+        "aog": {
+          "aog": 0.0,
+          "applicable": false,
+          "note": "no in-episode correction loop for a served LLM"
+        },
+        "cgs": {
+          "cgs": 1.0875,
+          "sg_gap": -0.06999999999999995,
+          "acc_base": 0.8,
+          "acc_novel": 0.87,
+          "nll_base": 1.5378716048552952,
+          "nll_novel": 0.9482089155583177,
+          "void": true,
+          "applicable": true
+        },
+        "cce": {
+          "cce": 0.9916666666666674,
+          "trace_total": 0.08421775897650136,
+          "trace_between": 0.0835159443183639,
+          "applicable": true
+        },
+        "ablation": {
+          "applicable": false,
+          "note": "no ablation surface exposed by the serving API"
+        },
+        "pct": {
+          "pct": null,
+          "applicable": false,
+          "note": "perturbation probe not defined for a served model"
+        },
+        "eib": {
+          "eib": null,
+          "applicable": false,
+          "throughput_tokens_per_s": 90.19811887957442
+        }
+      },
+      "n_ma_items": 150,
+      "n_cgs_base": 100,
+      "n_cgs_novel": 100,
+      "notes": [
+        "Confidence is the model's own token log-probability over the option letters.",
+        "Energy is a throughput proxy, not joules: absolute energy is not measurable on this host.",
+        "Ablation and perturbational-complexity metrics are not applicable to a served model."
+      ]
+    },
+    "ollama:qwen3:14b": {
+      "system": "ollama:qwen3:14b",
+      "kind": "subject",
+      "seed": 0,
+      "protocol_version": "0.1",
+      "implementation_version": "0.1.0",
+      "metrics": {
+        "ma": {
+          "auc": 0.8885135135135135,
+          "auc_ci": [
+            0.1097972972972973,
+            0.8936233108108107
+          ],
+          "ece": 0.01000931182019253,
+          "ece_ci": [
+            0.011204142315220498,
+            0.021359415067084126
+          ],
+          "brier": 0.009211510149135972,
+          "n": 150,
+          "applicable": true
+        },
+        "aog": {
+          "aog": 0.0,
+          "applicable": false,
+          "note": "no in-episode correction loop for a served LLM"
+        },
+        "cgs": {
+          "cgs": 1.010204081632653,
+          "sg_gap": -0.010000000000000009,
+          "acc_base": 0.98,
+          "acc_novel": 0.99,
+          "nll_base": 0.13234238892633426,
+          "nll_novel": 0.060486304154811286,
+          "void": true,
+          "applicable": true
+        },
+        "cce": {
+          "cce": 0.9916666666666674,
+          "trace_total": 0.08421775897650136,
+          "trace_between": 0.0835159443183639,
+          "applicable": true
+        },
+        "ablation": {
+          "applicable": false,
+          "note": "no ablation surface exposed by the serving API"
+        },
+        "pct": {
+          "pct": null,
+          "applicable": false,
+          "note": "perturbation probe not defined for a served model"
+        },
+        "eib": {
+          "eib": null,
+          "applicable": false,
+          "throughput_tokens_per_s": 45.020596601369434
+        }
+      },
+      "n_ma_items": 150,
+      "n_cgs_base": 100,
+      "n_cgs_novel": 100,
+      "notes": [
+        "Confidence is the model's own token log-probability over the option letters.",
+        "Energy is a throughput proxy, not joules: absolute energy is not measurable on this host.",
+        "Ablation and perturbational-complexity metrics are not applicable to a served model."
+      ]
+    },
+    "ollama:qwen35-9b-uncensored:latest": {
+      "system": "ollama:qwen35-9b-uncensored:latest",
+      "kind": "subject",
+      "seed": 0,
+      "protocol_version": "0.1",
+      "implementation_version": "0.1.0",
+      "metrics": {
+        "ma": {
+          "auc": 0.8547297297297297,
+          "auc_ci": [
+            0.08441722972972973,
+            0.8990287162162159
+          ],
+          "ece": 0.06439179977359706,
+          "ece_ci": [
+            0.04758440754949439,
+            0.09339571621632106
+          ],
+          "brier": 0.03014701303555237,
+          "n": 150,
+          "applicable": true
+        },
+        "aog": {
+          "aog": 0.0,
+          "applicable": false,
+          "note": "no in-episode correction loop for a served LLM"
+        },
+        "cgs": {
+          "cgs": 1.0204081632653061,
+          "sg_gap": -0.020000000000000018,
+          "acc_base": 0.98,
+          "acc_novel": 1.0,
+          "nll_base": 0.12933535137204483,
+          "nll_novel": 0.10873375485548792,
+          "void": true,
+          "applicable": true
+        },
+        "cce": {
+          "cce": 0.9916666666666674,
+          "trace_total": 0.08421775897650136,
+          "trace_between": 0.0835159443183639,
+          "applicable": true
+        },
+        "ablation": {
+          "applicable": false,
+          "note": "no ablation surface exposed by the serving API"
+        },
+        "pct": {
+          "pct": null,
+          "applicable": false,
+          "note": "perturbation probe not defined for a served model"
+        },
+        "eib": {
+          "eib": null,
+          "applicable": false,
+          "throughput_tokens_per_s": 129.42798588489967
+        }
+      },
+      "n_ma_items": 150,
+      "n_cgs_base": 100,
+      "n_cgs_novel": 100,
+      "notes": [
+        "Confidence is the model's own token log-probability over the option letters.",
+        "Energy is a throughput proxy, not joules: absolute energy is not measurable on this host.",
+        "Ablation and perturbational-complexity metrics are not applicable to a served model."
+      ]
+    },
+    "ollama:gemma3-27b-qat:latest": {
+      "system": "ollama:gemma3-27b-qat:latest",
+      "kind": "subject",
+      "seed": 0,
+      "protocol_version": "0.1",
+      "implementation_version": "0.1.0",
+      "metrics": {
+        "ma": {
+          "auc": 0.9117415287628053,
+          "auc_ci": [
+            0.30882584712371947,
+            0.684869976359338
+          ],
+          "ece": 0.05921248962608608,
+          "ece_ci": [
+            0.0543264515559153,
+            0.06969518340732826
+          ],
+          "brier": 0.05763594269618108,
+          "n": 150,
+          "applicable": true
+        },
+        "aog": {
+          "aog": 0.0,
+          "applicable": false,
+          "note": "no in-episode correction loop for a served LLM"
+        },
+        "cgs": {
+          "cgs": 1.0,
+          "sg_gap": 0.0,
+          "acc_base": 0.93,
+          "acc_novel": 0.93,
+          "nll_base": 0.42291818187370267,
+          "nll_novel": 0.4651303867902135,
+          "void": false,
+          "applicable": true
+        },
+        "cce": {
+          "cce": 0.9916666666666674,
+          "trace_total": 0.08421775897650136,
+          "trace_between": 0.0835159443183639,
+          "applicable": true
+        },
+        "ablation": {
+          "applicable": false,
+          "note": "no ablation surface exposed by the serving API"
+        },
+        "pct": {
+          "pct": null,
+          "applicable": false,
+          "note": "perturbation probe not defined for a served model"
+        },
+        "eib": {
+          "eib": null,
+          "applicable": false,
+          "throughput_tokens_per_s": 9.534284913989513
+        }
+      },
+      "n_ma_items": 150,
+      "n_cgs_base": 100,
+      "n_cgs_novel": 100,
+      "notes": [
+        "Confidence is the model's own token log-probability over the option letters.",
+        "Energy is a throughput proxy, not joules: absolute energy is not measurable on this host.",
+        "Ablation and perturbational-complexity metrics are not applicable to a served model."
+      ]
+    },
+    "ollama:qwen3-vl:8b-instruct-q4_K_M": {
+      "system": "ollama:qwen3-vl:8b-instruct-q4_K_M",
+      "kind": "subject",
+      "seed": 0,
+      "protocol_version": "0.1",
+      "implementation_version": "0.1.0",
+      "metrics": {
+        "ma": {
+          "auc": 0.91,
+          "auc_ci": [
+            0.32353571428571426,
+            0.6892857142857143
+          ],
+          "ece": 0.06476309488730991,
+          "ece_ci": [
+            0.058785839155576274,
+            0.08895412359229096
+          ],
+          "brier": 0.0639433597309408,
+          "n": 150,
+          "applicable": true
+        },
+        "aog": {
+          "aog": 0.0,
+          "applicable": false,
+          "note": "no in-episode correction loop for a served LLM"
+        },
+        "cgs": {
+          "cgs": 1.010752688172043,
+          "sg_gap": -0.009999999999999898,
+          "acc_base": 0.93,
+          "acc_novel": 0.94,
+          "nll_base": 0.5020013842927274,
+          "nll_novel": 0.16303356565043944,
+          "void": true,
+          "applicable": true
+        },
+        "cce": {
+          "cce": 0.9916666666666674,
+          "trace_total": 0.08421775897650136,
+          "trace_between": 0.0835159443183639,
+          "applicable": true
+        },
+        "ablation": {
+          "applicable": false,
+          "note": "no ablation surface exposed by the serving API"
+        },
+        "pct": {
+          "pct": null,
+          "applicable": false,
+          "note": "perturbation probe not defined for a served model"
+        },
+        "eib": {
+          "eib": null,
+          "applicable": false,
+          "throughput_tokens_per_s": 134.02264382833638
+        }
+      },
+      "n_ma_items": 150,
+      "n_cgs_base": 100,
+      "n_cgs_novel": 100,
+      "notes": [
+        "Confidence is the model's own token log-probability over the option letters.",
+        "Energy is a throughput proxy, not joules: absolute energy is not measurable on this host.",
+        "Ablation and perturbational-complexity metrics are not applicable to a served model."
+      ]
+    }
+  },
+  "config": {
+    "models": [
+      "qwen3:8b",
+      "gemma3-12b:latest",
+      "qwen3:14b",
+      "qwen35-9b-uncensored:latest",
+      "gemma3-27b-qat:latest",
+      "qwen3-vl:8b-instruct-q4_K_M"
+    ],
+    "embed_model": "bge-m3:latest",
+    "n_ma": 150,
+    "n_cgs_base": 100,
+    "n_cgs_novel": 100,
+    "seed": 0,
+    "out": "F:\\Protennoia_pub\\04_harness\\results\\ollama_matrix.json"
+  }
+}

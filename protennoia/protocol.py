@@ -17,7 +17,7 @@ from . import metrics as M
 from .systems import (N_LABELS, build_system, make_instances, system_names)
 
 PROTOCOL_VERSION = "0.1"
-IMPLEMENTATION_VERSION = "0.1.1"
+IMPLEMENTATION_VERSION = "0.1.3"
 
 # Systems designated as controls. The gate is evaluated over these alone.
 CONTROL_SYSTEMS = [

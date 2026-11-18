@@ -1,0 +1,424 @@
+{
+  "protocol_version": "0.1",
+  "implementation_version": "0.1.3",
+  "systems": {
+    "ollama:qwen3:8b": {
+      "system": "ollama:qwen3:8b",
+      "kind": "subject",
+      "seed": 0,
+      "protocol_version": "0.1",
+      "implementation_version": "0.1.3",
+      "metrics": {
+        "ma": {
+          "auc": 0.8164285714285714,
+          "auc_ci": [
+            0.702125,
+            0.9178571428571428
+          ],
+          "ece": 0.06511185115255506,
+          "ece_ci": [
+            0.0547674332195057,
+            0.08070061997700835
+          ],
+          "brier": 0.06345037211480221,
+          "n": 150,
+          "applicable": true
+        },
+        "aog": {
+          "aog": 0.0,
+          "applicable": false,
+          "note": "no in-episode correction loop for a served LLM"
+        },
+        "cgs": {
+          "cgs": 1.0425531914893618,
+          "sg_gap": -0.040000000000000036,
+          "acc_base": 0.94,
+          "acc_novel": 0.98,
+          "nll_base": 0.28189945311921566,
+          "nll_novel": 0.01825071562918938,
+          "void": true,
+          "applicable": true
+        },
+        "cce": {
+          "cce": null,
+          "applicable": false,
+          "probe_cce": 0.9916666666666674,
+          "note": "CCE withheld: the serving API exposes no internal representation of the subject. The probe value is computed from embeddings of the query text produced by a separate host embedding model and therefore characterises that embedding model, not the subject."
+        },
+        "ablation": {
+          "applicable": false,
+          "note": "no ablation surface exposed by the serving API"
+        },
+        "pct": {
+          "pct": null,
+          "applicable": false,
+          "note": "perturbation probe not defined for a served model"
+        },
+        "eib": {
+          "eib": null,
+          "applicable": false,
+          "throughput_tokens_per_s": 131.62157640544294
+        }
+      },
+      "n_ma_items": 150,
+      "n_cgs_base": 100,
+      "n_cgs_novel": 100,
+      "notes": [
+        "Confidence is the model's own token log-probability over the option letters.",
+        "Energy is a throughput proxy, not joules: absolute energy is not measurable on this host.",
+        "Ablation and perturbational-complexity metrics are not applicable to a served model."
+      ]
+    },
+    "ollama:gemma3-12b:latest": {
+      "system": "ollama:gemma3-12b:latest",
+      "kind": "subject",
+      "seed": 0,
+      "protocol_version": "0.1",
+      "implementation_version": "0.1.3",
+      "metrics": {
+        "ma": {
+          "auc": 0.8023828023828024,
+          "auc_ci": [
+            0.718965293965294,
+            0.8821548821548821
+          ],
+          "ece": 0.2153404462923913,
+          "ece_ci": [
+            0.20665110109894586,
+            0.22633547191464412
+          ],
+          "brier": 0.20834421021412794,
+          "n": 150,
+          "applicable": true
+        },
+        "aog": {
+          "aog": 0.0,
+          "applicable": false,
+          "note": "no in-episode correction loop for a served LLM"
+        },
+        "cgs": {
+          "cgs": 1.0875,
+          "sg_gap": -0.06999999999999995,
+          "acc_base": 0.8,
+          "acc_novel": 0.87,
+          "nll_base": 1.5378716048552952,
+          "nll_novel": 0.9482089155583177,
+          "void": true,
+          "applicable": true
+        },
+        "cce": {
+          "cce": null,
+          "applicable": false,
+          "probe_cce": 0.9916666666666674,
+          "note": "CCE withheld: the serving API exposes no internal representation of the subject. The probe value is computed from embeddings of the query text produced by a separate host embedding model and therefore characterises that embedding model, not the subject."
+        },
+        "ablation": {
+          "applicable": false,
+          "note": "no ablation surface exposed by the serving API"
+        },
+        "pct": {
+          "pct": null,
+          "applicable": false,
+          "note": "perturbation probe not defined for a served model"
+        },
+        "eib": {
+          "eib": null,
+          "applicable": false,
+          "throughput_tokens_per_s": 88.13651086439883
+        }
+      },
+      "n_ma_items": 150,
+      "n_cgs_base": 100,
+      "n_cgs_novel": 100,
+      "notes": [
+        "Confidence is the model's own token log-probability over the option letters.",
+        "Energy is a throughput proxy, not joules: absolute energy is not measurable on this host.",
+        "Ablation and perturbational-complexity metrics are not applicable to a served model."
+      ]
+    },
+    "ollama:qwen3:14b": {
+      "system": "ollama:qwen3:14b",
+      "kind": "subject",
+      "seed": 0,
+      "protocol_version": "0.1",
+      "implementation_version": "0.1.3",
+      "metrics": {
+        "ma": {
+          "auc": 0.8885135135135135,
+          "auc_ci": [
+            0.722972972972973,
+            1.0
+          ],
+          "ece": 0.01000931182019253,
+          "ece_ci": [
+            0.011204142315220498,
+            0.021359415067084126
+          ],
+          "brier": 0.009211510149135972,
+          "n": 150,
+          "applicable": true
+        },
+        "aog": {
+          "aog": 0.0,
+          "applicable": false,
+          "note": "no in-episode correction loop for a served LLM"
+        },
+        "cgs": {
+          "cgs": 1.010204081632653,
+          "sg_gap": -0.010000000000000009,
+          "acc_base": 0.98,
+          "acc_novel": 0.99,
+          "nll_base": 0.13234238892633426,
+          "nll_novel": 0.060486304154811286,
+          "void": true,
+          "applicable": true
+        },
+        "cce": {
+          "cce": null,
+          "applicable": false,
+          "probe_cce": 0.9916666666666674,
+          "note": "CCE withheld: the serving API exposes no internal representation of the subject. The probe value is computed from embeddings of the query text produced by a separate host embedding model and therefore characterises that embedding model, not the subject."
+        },
+        "ablation": {
+          "applicable": false,
+          "note": "no ablation surface exposed by the serving API"
+        },
+        "pct": {
+          "pct": null,
+          "applicable": false,
+          "note": "perturbation probe not defined for a served model"
+        },
+        "eib": {
+          "eib": null,
+          "applicable": false,
+          "throughput_tokens_per_s": 41.77678330466053
+        }
+      },
+      "n_ma_items": 150,
+      "n_cgs_base": 100,
+      "n_cgs_novel": 100,
+      "notes": [
+        "Confidence is the model's own token log-probability over the option letters.",
+        "Energy is a throughput proxy, not joules: absolute energy is not measurable on this host.",
+        "Ablation and perturbational-complexity metrics are not applicable to a served model."
+      ]
+    },
+    "ollama:qwen35-9b-uncensored:latest": {
+      "system": "ollama:qwen35-9b-uncensored:latest",
+      "kind": "subject",
+      "seed": 0,
+      "protocol_version": "0.1",
+      "implementation_version": "0.1.3",
+      "metrics": {
+        "ma": {
+          "auc": 0.8547297297297297,
+          "auc_ci": [
+            0.7027027027027027,
+            0.9864864864864865
+          ],
+          "ece": 0.06439179977359706,
+          "ece_ci": [
+            0.04758440754949439,
+            0.09339571621632106
+          ],
+          "brier": 0.03014701303555237,
+          "n": 150,
+          "applicable": true
+        },
+        "aog": {
+          "aog": 0.0,
+          "applicable": false,
+          "note": "no in-episode correction loop for a served LLM"
+        },
+        "cgs": {
+          "cgs": 1.0204081632653061,
+          "sg_gap": -0.020000000000000018,
+          "acc_base": 0.98,
+          "acc_novel": 1.0,
+          "nll_base": 0.12933535137204483,
+          "nll_novel": 0.10873375485548792,
+          "void": true,
+          "applicable": true
+        },
+        "cce": {
+          "cce": null,
+          "applicable": false,
+          "probe_cce": 0.9916666666666674,
+          "note": "CCE withheld: the serving API exposes no internal representation of the subject. The probe value is computed from embeddings of the query text produced by a separate host embedding model and therefore characterises that embedding model, not the subject."
+        },
+        "ablation": {
+          "applicable": false,
+          "note": "no ablation surface exposed by the serving API"
+        },
+        "pct": {
+          "pct": null,
+          "applicable": false,
+          "note": "perturbation probe not defined for a served model"
+        },
+        "eib": {
+          "eib": null,
+          "applicable": false,
+          "throughput_tokens_per_s": 122.32971709802266
+        }
+      },
+      "n_ma_items": 150,
+      "n_cgs_base": 100,
+      "n_cgs_novel": 100,
+      "notes": [
+        "Confidence is the model's own token log-probability over the option letters.",
+        "Energy is a throughput proxy, not joules: absolute energy is not measurable on this host.",
+        "Ablation and perturbational-complexity metrics are not applicable to a served model."
+      ]
+    },
+    "ollama:qwen3-vl:8b-instruct-q4_K_M": {
+      "system": "ollama:qwen3-vl:8b-instruct-q4_K_M",
+      "kind": "subject",
+      "seed": 0,
+      "protocol_version": "0.1",
+      "implementation_version": "0.1.3",
+      "metrics": {
+        "ma": {
+          "auc": 0.91,
+          "auc_ci": [
+            0.86,
+            0.9514285714285714
+          ],
+          "ece": 0.06476309488730991,
+          "ece_ci": [
+            0.058785839155576274,
+            0.08895412359229096
+          ],
+          "brier": 0.0639433597309408,
+          "n": 150,
+          "applicable": true
+        },
+        "aog": {
+          "aog": 0.0,
+          "applicable": false,
+          "note": "no in-episode correction loop for a served LLM"
+        },
+        "cgs": {
+          "cgs": 1.010752688172043,
+          "sg_gap": -0.009999999999999898,
+          "acc_base": 0.93,
+          "acc_novel": 0.94,
+          "nll_base": 0.5020013842927274,
+          "nll_novel": 0.16303356565043944,
+          "void": true,
+          "applicable": true
+        },
+        "cce": {
+          "cce": null,
+          "applicable": false,
+          "probe_cce": 0.9916666666666674,
+          "note": "CCE withheld: the serving API exposes no internal representation of the subject. The probe value is computed from embeddings of the query text produced by a separate host embedding model and therefore characterises that embedding model, not the subject."
+        },
+        "ablation": {
+          "applicable": false,
+          "note": "no ablation surface exposed by the serving API"
+        },
+        "pct": {
+          "pct": null,
+          "applicable": false,
+          "note": "perturbation probe not defined for a served model"
+        },
+        "eib": {
+          "eib": null,
+          "applicable": false,
+          "throughput_tokens_per_s": 138.8259768124746
+        }
+      },
+      "n_ma_items": 150,
+      "n_cgs_base": 100,
+      "n_cgs_novel": 100,
+      "notes": [
+        "Confidence is the model's own token log-probability over the option letters.",
+        "Energy is a throughput proxy, not joules: absolute energy is not measurable on this host.",
+        "Ablation and perturbational-complexity metrics are not applicable to a served model."
+      ]
+    },
+    "ollama:gemma3-27b-qat:latest": {
+      "system": "ollama:gemma3-27b-qat:latest",
+      "kind": "subject",
+      "seed": 0,
+      "protocol_version": "0.1",
+      "implementation_version": "0.1.3",
+      "metrics": {
+        "ma": {
+          "auc": 0.9117415287628053,
+          "auc_ci": [
+            0.8384554767533491,
+            0.9692671394799054
+          ],
+          "ece": 0.05921249055352089,
+          "ece_ci": [
+            0.05432645248335032,
+            0.06969518523901248
+          ],
+          "brier": 0.05763594269617355,
+          "n": 150,
+          "applicable": true
+        },
+        "aog": {
+          "aog": 0.0,
+          "applicable": false,
+          "note": "no in-episode correction loop for a served LLM"
+        },
+        "cgs": {
+          "cgs": 1.0,
+          "sg_gap": 0.0,
+          "acc_base": 0.93,
+          "acc_novel": 0.93,
+          "nll_base": 0.4229181806443064,
+          "nll_novel": 0.4651508412431177,
+          "void": false,
+          "applicable": true
+        },
+        "cce": {
+          "cce": null,
+          "applicable": false,
+          "probe_cce": 0.9916666666666674,
+          "note": "CCE withheld: the serving API exposes no internal representation of the subject. The probe value is computed from embeddings of the query text produced by a separate host embedding model and therefore characterises that embedding model, not the subject."
+        },
+        "ablation": {
+          "applicable": false,
+          "note": "no ablation surface exposed by the serving API"
+        },
+        "pct": {
+          "pct": null,
+          "applicable": false,
+          "note": "perturbation probe not defined for a served model"
+        },
+        "eib": {
+          "eib": null,
+          "applicable": false,
+          "throughput_tokens_per_s": 9.254017641674151
+        }
+      },
+      "n_ma_items": 150,
+      "n_cgs_base": 100,
+      "n_cgs_novel": 100,
+      "notes": [
+        "Confidence is the model's own token log-probability over the option letters.",
+        "Energy is a throughput proxy, not joules: absolute energy is not measurable on this host.",
+        "Ablation and perturbational-complexity metrics are not applicable to a served model."
+      ]
+    }
+  },
+  "config": {
+    "models": [
+      "qwen3:8b",
+      "gemma3-12b:latest",
+      "qwen3:14b",
+      "qwen35-9b-uncensored:latest",
+      "gemma3-27b-qat:latest",
+      "qwen3-vl:8b-instruct-q4_K_M"
+    ],
+    "embed_model": "bge-m3:latest",
+    "n_ma": 150,
+    "n_cgs_base": 100,
+    "n_cgs_novel": 100,
+    "seed": 0,
+    "out": "F:\\Protennoia_pub\\04_harness\\results\\ollama_matrix.json"
+  }
+}

@@ -81,6 +81,44 @@ def bootstrap_ci(values: np.ndarray, statistic, n_resample: int = 1000,
     return (lo, hi)
 
 
+def stratified_bootstrap_ci(values: np.ndarray, labels: np.ndarray, statistic,
+                            n_resample: int = 1000, alpha: float = 0.05, seed: int = 0):
+    """Percentile bootstrap CI with the class balance held fixed.
+
+    Resampling is performed *within* each label stratum, and values and
+    labels are resampled together so that the statistic always sees a
+    consistent sample.
+
+    The reason is specific to AUC. A subject that is right most of the time
+    has few minority-class items, and a pooled resample can easily contain
+    very few of them. The AUC of such a resample is degenerate -- it collapses
+    towards 0 or 1 because almost every pair of a positive and a negative item
+    is decided by the handful of minority items that survived. Those
+    degenerate replicates enter the percentile interval and blow it up, and
+    the interval can even fail to contain the point estimate it is supposed
+    to bracket. Holding the class balance fixed removes the artefact: the
+    interval then reflects how much the ranking of correct-versus-incorrect
+    items can move under resampling of the items themselves.
+    """
+    values = np.asarray(values)
+    labels = np.asarray(labels)
+    if len(values) < 2:
+        return (float("nan"), float("nan"))
+    groups = [np.flatnonzero(labels == v) for v in np.unique(labels)]
+    if len(groups) < 2 or any(len(g) == 0 for g in groups):
+        return bootstrap_ci(values, lambda v: statistic(v, labels),
+                            n_resample=n_resample, alpha=alpha, seed=seed)
+    rng = np.random.default_rng(seed)
+    stats = np.empty(n_resample)
+    for i in range(n_resample):
+        idx = np.concatenate([rng.choice(g, size=len(g), replace=True)
+                              for g in groups])
+        stats[i] = statistic(values[idx], labels[idx])
+    lo = float(np.nanpercentile(stats, 100 * alpha / 2))
+    hi = float(np.nanpercentile(stats, 100 * (1 - alpha / 2)))
+    return (lo, hi)
+
+
 # ------------------------------------------------------------------ MA -----
 def compute_ma(confidences: np.ndarray, correct: np.ndarray, seed: int = 0) -> dict:
     """Metacognitive accuracy (AUC-ROC) with a paired calibration error.
@@ -97,7 +135,7 @@ def compute_ma(confidences: np.ndarray, correct: np.ndarray, seed: int = 0) -> d
     auc = auc_roc(y, c)
     ece = expected_calibration_error(c, y.astype(float))
     brier = brier_score(c, y.astype(float))
-    auc_lo, auc_hi = bootstrap_ci(c, lambda v: auc_roc(y, v), seed=seed)
+    auc_lo, auc_hi = stratified_bootstrap_ci(c, y, lambda v, yy: auc_roc(yy, v), seed=seed)
     ece_lo, ece_hi = bootstrap_ci(c, lambda v: expected_calibration_error(v, y.astype(float)), seed=seed + 1)
     return {"auc": auc, "auc_ci": [auc_lo, auc_hi], "ece": ece, "ece_ci": [ece_lo, ece_hi],
             "brier": brier, "n": int(len(c)), "applicable": True}

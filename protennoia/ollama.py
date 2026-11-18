@@ -24,9 +24,16 @@ Base and novel splits differ in which combinations occur.
 
 Latents
 -------
-The internal representation is taken from the Ollama embedding endpoint for
-the query text. CCE is then computed with the same estimator used for the
-reference systems, so the two families are directly comparable.
+The serving API exposes no internal representation of the subject, so the
+protocol has no way to obtain a latent that belongs to the model being
+measured. The only candidate is an embedding of the query text produced by a
+separate host embedding model, and that latent characterises the embedding
+model rather than the subject: it saturates near 1.0 for every subject
+measured, including ones that answer incorrectly. CCE is therefore computed
+as a *probe* and then withheld from the profile, with the probe value kept as
+an artefact -- the fail-closed rule applied to our own extension of the
+protocol. Two of the seven metrics (MA and CGS, with ECE) are the ones that
+remain well defined for a served model.
 
 Energy
 ------
@@ -47,6 +54,7 @@ import urllib.error
 import numpy as np
 
 from . import metrics as M
+from .protocol import IMPLEMENTATION_VERSION, PROTOCOL_VERSION
 from .systems import (MODS, NOVEL_TYPE_B, RELS, VERBS, BaseSystem, make_instances)
 
 DEFAULT_URL = os.environ.get("OLLAMA_HOST", "http://127.0.0.1:11434")
@@ -324,7 +332,16 @@ def evaluate_llm(model: str, client: OllamaClient, n_ma: int = 120,
     acc_novel, nll_novel = acc_and_nll(novel[:n_cgs_novel])
     cgs = M.compute_cgs(acc_base, acc_novel, nll_base, nll_novel)
 
-    # ---- CCE from the model's own embeddings ----------------------------
+    # ---- CCE: probe only -- withheld from the profile (fail-closed) --------
+    # The serving API exposes no internal representation of the subject. The
+    # only latent we can construct is an embedding of the query text produced
+    # by a *separate* host embedding model, so the probe value characterises
+    # that embedding model rather than the subject: it saturates near 1.0 for
+    # every model, including ones whose answers are wrong, and it would rank
+    # a trivial answerer above a structured one. We therefore compute it, keep
+    # it as an artefact, and withhold the metric from the profile -- the same
+    # rule the protocol applies to any metric whose meaning does not hold for
+    # the subject being measured.
     probe_items = (base + novel)[:120]
     try:
         texts = [query_text(it["verb"], it["mod"], it["rel"]) for it in probe_items]
@@ -352,16 +369,25 @@ def evaluate_llm(model: str, client: OllamaClient, n_ma: int = 120,
             zc = z - z.mean(axis=0, keepdims=True)
             _, _, vt = np.linalg.svd(zc, full_matrices=False)
             z = zc @ vt[:k].T
-        cce = M.compute_cce(z, labels)
+        probe = M.compute_cce(z, labels)
     except Exception as exc:
-        cce = {"cce": None, "applicable": False, "note": f"embedding failed: {exc}"}
+        probe = {"cce": None, "applicable": False, "note": f"embedding failed: {exc}"}
+    cce = {
+        "cce": None,
+        "applicable": False,
+        "probe_cce": probe.get("cce"),
+        "note": ("CCE withheld: the serving API exposes no internal representation "
+                 "of the subject. The probe value is computed from embeddings of the "
+                 "query text produced by a separate host embedding model and therefore "
+                 "characterises that embedding model, not the subject."),
+    }
 
     return {
         "system": system.name,
         "kind": "subject",
         "seed": seed,
-        "protocol_version": "0.1",
-        "implementation_version": "0.1.0",
+        "protocol_version": PROTOCOL_VERSION,
+        "implementation_version": IMPLEMENTATION_VERSION,
         "metrics": {
             "ma": ma,
             "aog": {"aog": 0.0, "applicable": False,
@@ -399,7 +425,7 @@ def main(argv=None):
     a = ap.parse_args(argv)
 
     client = OllamaClient()
-    out = {"protocol_version": "0.1", "implementation_version": "0.1.0",
+    out = {"protocol_version": PROTOCOL_VERSION, "implementation_version": IMPLEMENTATION_VERSION,
            "systems": {}, "config": vars(a)}
     for m in a.models:
         print(f"[protennoia] measuring {m} ...", flush=True)
@@ -409,7 +435,7 @@ def main(argv=None):
                 n_cgs_novel=a.n_cgs_novel, seed=a.seed, embed_model=a.embed_model)
             r = out["systems"][f"ollama:{m}"]["metrics"]
             print(f"[protennoia] {m}: MA={r['ma'].get('auc')} ECE={r['ma'].get('ece')} "
-                  f"CGS={r['cgs'].get('cgs')} CCE={r['cce'].get('cce')} "
+                  f"CGS={r['cgs'].get('cgs')} CCE=withheld(probe={r['cce'].get('probe_cce')}) "
                   f"tps={out['systems'][f'ollama:{m}']['metrics']['eib'].get('throughput_tokens_per_s')}",
                   flush=True)
         except Exception as exc:

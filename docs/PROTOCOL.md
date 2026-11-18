@@ -158,6 +158,34 @@ before measurement. Systems are compared only in paired fashion across seeds. A 
 claim requires that the controls behave as specified, that the difference falls outside the
 confidence interval, and that it survives switching ablation family.
 
+The bootstrap used for the discrimination metric (AUC) is **label-stratified**: resampling is
+performed within each class, and values and labels are resampled together, so every replicate is
+a consistent sample. The pooled percentile bootstrap is degenerate for subjects with few
+errors. A resample can then contain very few minority-class items; the AUC of such a resample
+collapses towards 0 or 1 because nearly every positive-negative pair is decided by the handful
+of minority items that survived; and those replicates enter the percentile interval. The
+interval can even fail to contain the point estimate it is supposed to bracket — observed in
+the live track, where the pooled estimator reported [0.08, 0.90] around an AUC of 0.855. The
+pooled estimator is retained in the implementation only for the calibration error, where the
+degeneracy does not arise.
+
+## 5a. Measuring a served model
+
+The protocol can be applied to a language model served through an inference API. The metric
+code is unchanged; the *availability* of the metrics is not. A serving API exposes no ablation
+surface, no correction loop, no internal state and no energy accounting, so AOG, the ablation
+family, PCT, EIB and CCE are reported as **not applicable** rather than as zero.
+
+CCE requires a separate decision, because a serving API can produce a number that looks like a
+measurement while measuring something else. The only latent a serving API can offer is an
+embedding of the prompt produced by a *separate* embedding model, and that latent
+characterises the embedding model rather than the subject: in the live track it saturated near
+1.0 for every model measured, including models that answered incorrectly, and would have
+ranked every served model above the reference systems that actually represent the task
+structure. The protocol therefore computes the probe, keeps it as an artefact of the run, and
+**withholds the metric from the profile**. This is the fail-closed rule of §4 applied to the
+protocol's own extension of itself.
+
 ## 6. Profile schema
 
 A profile records: protocol version; implementation version; system identifier and kind; seed;
