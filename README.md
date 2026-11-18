@@ -206,6 +206,9 @@ MIT. See `LICENSE`.
 > operational, substrate-agnostic measurement protocol with human baselines, mandatory negative
 > controls, and a reproducible implementation.* [journal, preprint, DOI to be assigned].
 
+Archived software: **10.5281/zenodo.24327764** (version 0.1.3, MIT). The preprint PDF and the
+manuscript sources are in `paper/` of this repository.
+
 ## Protocol specification
 
 `docs/PROTOCOL.md` in this repository is the versioned, citable specification of the protocol.

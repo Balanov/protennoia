@@ -290,8 +290,8 @@ The complete test suite passes (57 tests, 0 failures), and the control gate pass
 
 Table 1 reports every control binding on the full configuration. Each metric falls at its
 designated control, and the demonstration binding holds: the mock calibrated-confidence system
-achieves an AUC of 0.98 while its error-signal adaptation is exactly zero and its
-shared-information efficiency is 0.02.
+achieves an AUC of 0.983 while its error-signal adaptation is exactly zero and its
+shared-information efficiency is 0.017.
 
 | Binding | Control system | Expectation | Observed | |
 |---|---|---|---|---|
